@@ -39,14 +39,14 @@ function renderCells(
     const className = item.class
     if (labelRender) {
       const _oldLabel = label
-      label = labelRender({ item, index, value: label }) ?? label
+      label = labelRender({ item, index: item?._$index ?? index, value: label }) ?? label
       const arrLabel = Array.isArray(label) ? label : [label]
       const _label = filterEmpty(arrLabel)
       label = _label.length > 0 ? _label : _oldLabel
     }
     if (contentRender) {
       const _oldChild = children
-      children = contentRender({ item, index, value: children }) ?? children
+      children = contentRender({ item, index: item?._$index ?? index, value: children }) ?? children
       const arrChild = Array.isArray(children) ? children : [children]
       const _child = filterEmpty(arrChild)
       children = _child.length > 0 ? _child : _oldChild

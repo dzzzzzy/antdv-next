@@ -25,6 +25,10 @@ export interface InternalDescriptionsItemType extends Omit<DescriptionsItemProps
   key?: Key
   filled?: boolean
   span?: number
+  /**
+   * @internal 记录当前项的索引，用于渲染时的辅助计算
+   */
+  _$index?: number
 }
 
 export interface DescriptionsItemType extends Omit<DescriptionsItemProps, 'prefixCls'> {

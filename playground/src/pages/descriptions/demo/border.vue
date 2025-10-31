@@ -55,8 +55,8 @@ const items = [
 
 <template>
   <a-descriptions title="User Info" :items="items" bordered>
-    <template #contentRender="{ item }">
-      <template v-if="item.key === '6'">
+    <template #contentRender="{ index, item }">
+      <template v-if="index === 5">
         <a-badge status="processing" text="running" />
       </template>
       <template v-if="item.key === '10'">
