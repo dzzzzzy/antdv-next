@@ -90,7 +90,7 @@ export default class ThemeCache {
             }
             return result
           },
-          [this.keys[0], this.cacheCallTimes],
+          [this.keys[0]!, this.cacheCallTimes],
         )
         this.delete(targetKey)
       }
@@ -120,19 +120,19 @@ export default class ThemeCache {
     currentCache: ThemeCacheMap,
     derivatives: DerivativeFunc<any, any>[],
   ): Theme<any, any> | undefined {
-    const cache = currentCache.get(derivatives[0])!
+    const cache = currentCache.get(derivatives[0]!)!
     if (derivatives.length === 1) {
       if (!cache.map) {
-        currentCache.delete(derivatives[0])
+        currentCache.delete(derivatives[0]!)
       }
       else {
-        currentCache.set(derivatives[0], { map: cache.map })
+        currentCache.set(derivatives[0]!, { map: cache.map })
       }
       return cache.value?.[0]
     }
     const result = this.deleteByPath(cache.map!, derivatives.slice(1))
     if ((!cache.map || cache.map.size === 0) && !cache.value) {
-      currentCache.delete(derivatives[0])
+      currentCache.delete(derivatives[0]!)
     }
     return result
   }

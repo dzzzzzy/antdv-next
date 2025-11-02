@@ -1,3 +1,4 @@
+import type { HashPriority } from '../StyleContext'
 import hash from '@emotion/hash'
 import canUseDom from '@v-c/util/dist/Dom/canUseDom'
 import { removeCSS, updateCSS } from '@v-c/util/dist/Dom/dynamicCSS'
@@ -191,4 +192,16 @@ export function toStyleStr(
     .join(' ')
 
   return `<style ${attrStr}>${style}</style>`
+}
+
+export function where(options?: {
+  hashPriority?: HashPriority
+  hashCls?: string
+}) {
+  const { hashCls, hashPriority = 'low' } = options || {}
+  if (!hashCls) {
+    return ''
+  }
+  const hashSelector = `.${hashCls}`
+  return hashPriority === 'low' ? `:where(${hashSelector})` : hashSelector
 }

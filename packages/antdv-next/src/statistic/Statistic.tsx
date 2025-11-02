@@ -1,15 +1,26 @@
 import type { CSSProperties, SlotsType, VNodeChild } from 'vue'
+import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
 import type { VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import type { FormatConfig, valueType } from './utils.ts'
 import { classNames } from '@v-c/util'
 import pickAttrs from '@v-c/util/dist/pickAttrs'
-import { defineComponent, shallowRef } from 'vue'
-import { getSlotPropsFnRun } from '../_util/tools.ts'
-import { useBaseConfig, useComponentConfig } from '../config-provider/context.ts'
+import { computed, defineComponent, shallowRef } from 'vue'
+import {
+
+  useMergeSemantic,
+  useToArr,
+  useToProps,
+} from '../_util/hooks'
+import { clsx, getSlotPropsFnRun, toPropsRefs } from '../_util/tools.ts'
+import { useComponentBaseConfig } from '../config-provider/context.ts'
 import Skeleton from '../skeleton'
 import StatisticNumber from './Number.tsx'
 import useStyle from './style'
+
+export type SemanticName = 'root' | 'content' | 'title' | 'header' | 'prefix' | 'suffix'
+export type StatisticClassNamesType = SemanticClassNamesType<StatisticProps, SemanticName>
+export type StatisticStylesType = SemanticStylesType<StatisticProps, SemanticName>
 
 type StatisticRectProps = FormatConfig & ComponentBaseProps & {
   value?: valueType
@@ -19,6 +30,8 @@ type StatisticRectProps = FormatConfig & ComponentBaseProps & {
   prefix?: VueNode
   suffix?: VueNode
   loading?: boolean
+  classes?: StatisticClassNamesType
+  styles?: StatisticStylesType
 }
 
 export type StatisticProps = StatisticRectProps
@@ -53,10 +66,28 @@ const Statistic = defineComponent<
   SlotsType<StatisticSlots>
 >(
   (props = defaults, { slots, attrs, emit, expose }) => {
-    const { direction, prefixCls } = useBaseConfig('statistic', props)
+    const {
+      direction,
+      prefixCls,
+      class: contextClassName,
+      style: contextStyle,
+      classes: contextClassNames,
+      styles: contextStyles,
+    } = useComponentBaseConfig('statistic', props)
+    const { classes, styles } = toPropsRefs(props, 'classes', 'styles')
     const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls)
-    const compCtx = useComponentConfig('statistic')
     const internalRef = shallowRef<HTMLDivElement>()
+    // =========== Merged Props for Semantic ===========
+    const mergedProps = computed(() => props)
+    const [mergedClassNames, mergedStyles] = useMergeSemantic<
+      StatisticClassNamesType,
+      StatisticStylesType,
+      StatisticProps
+    >(
+      useToArr(contextClassNames, classes),
+      useToArr(contextStyles, styles),
+      useToProps(mergedProps),
+    )
     expose({
       nativeElement: internalRef,
     })
@@ -78,8 +109,6 @@ const Statistic = defineComponent<
         valueStyle,
         valueRender,
       } = props
-      const contextClassName = compCtx.value?.class
-      const contextStyle = compCtx.value?.style
       const title = getSlotPropsFnRun(slots, props, 'title')
       const prefix = getSlotPropsFnRun(slots, props, 'prefix')
       const suffix = getSlotPropsFnRun(slots, props, 'suffix')
@@ -99,28 +128,60 @@ const Statistic = defineComponent<
         {
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
         },
-        contextClassName,
+        contextClassName.value,
         (attrs as any).class,
         rootClass,
+        mergedClassNames.value.root,
         hashId.value,
         cssVarCls.value,
       )
       const restProps = pickAttrs(attrs, { data: true, aria: true })
+
+      const headerClassNames = clsx(`${prefixCls.value}-header`, mergedClassNames.value.header)
+
+      const titleClassNames = clsx(`${prefixCls.value}-title`, mergedClassNames.value.title)
+
+      const contentClassNames = clsx(`${prefixCls.value}-content`, mergedClassNames.value.content)
+
+      const prefixClassNames = clsx(`${prefixCls.value}-content-prefix`, mergedClassNames.value.prefix)
+
+      const suffixClassNames = clsx(`${prefixCls.value}-content-suffix`, mergedClassNames.value.suffix)
       return wrapCSSVar(
         <div
           {...restProps}
           ref={internalRef}
           class={cls}
-          style={[contextStyle, (attrs as any).style]}
+          style={[mergedStyles.value.root, contextStyle.value, (attrs as any).style]}
           onMouseenter={handleMouseEnter}
           onMouseleave={handleMouseLeave}
         >
-          {!!title && <div class={`${prefixCls.value}-title`}>{title}</div>}
+          {!!title && (
+            <div class={headerClassNames} style={mergedStyles.value.header}>
+              <div class={titleClassNames} style={mergedStyles.value.header}>{title}</div>
+            </div>
+          )}
           <Skeleton paragraph={false} loading={loading} class={`${prefixCls.value}-skeleton`} active>
-            <div style={valueStyle} class={`${prefixCls.value}-content`}>
-              {!!prefix && <span class={`${prefixCls.value}-content-prefix`}>{prefix}</span>}
+            <div
+              style={[valueStyle, mergedStyles.value.content]}
+              class={contentClassNames}
+            >
+              {!!prefix && (
+                <span
+                  class={prefixClassNames}
+                  style={mergedStyles.value.prefix}
+                >
+                  {prefix}
+                </span>
+              )}
               {valueRender ? valueRender(valueNode) : valueNode}
-              {!!suffix && <span class={`${prefixCls.value}-content-suffix`}>{suffix}</span>}
+              {!!suffix && (
+                <span
+                  class={suffixClassNames}
+                  style={mergedStyles.value.suffix}
+                >
+                  {suffix}
+                </span>
+              )}
             </div>
           </Skeleton>
         </div>,

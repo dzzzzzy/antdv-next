@@ -11,14 +11,11 @@ import { uniqueHash } from './useStyleRegister'
 
 export const CSS_VAR_PREFIX = 'cssVar'
 
-export type CSSVarCacheValue<
-  V,
-  T extends Record<string, V> = Record<string, V>,
-> = [
-  cssVarToken: TokenWithCSSVar<V, T>,
-  cssVarStr: string,
-  styleId: string,
-  cssVarKey: string,
+export type CSSVarCacheValue<V, T extends Record<string, V> = Record<string, V>> = [
+    cssVarToken: TokenWithCSSVar<V, T>,
+    cssVarStr: string,
+    styleId: string,
+    cssVarKey: string,
 ]
 
 export interface CSSVarRegisterConfig {
@@ -27,34 +24,24 @@ export interface CSSVarRegisterConfig {
   prefix?: string
   unitless?: Record<string, boolean>
   ignore?: Record<string, boolean>
-  preserve?: Record<string, boolean>
   scope?: string
   token: any
+  hashId?: string
 }
 
-export default function useCSSVarRegister<
-  V,
-  T extends Record<string, V>,
->(config: Ref<CSSVarRegisterConfig>, fn: () => T) {
+export default function useCSSVarRegister<V, T extends Record<string, V>>(
+  config: Ref<CSSVarRegisterConfig>,
+  fn: () => T,
+) {
   const styleContext = useStyleContext()
 
-  const stylePath = computed<(string | number)[]>(() => {
-    const info = config.value
-    const tokenKey = info.token?._tokenKey || ''
-    const prefix = info.prefix || ''
-    const scope = info.scope || ''
-    const unitlessKey = info.unitless ? JSON.stringify(info.unitless) : ''
-    const ignoreKey = info.ignore ? JSON.stringify(info.ignore) : ''
-    const preserveKey = info.preserve ? JSON.stringify(info.preserve) : ''
+  const stylePath = computed<any[]>(() => {
+    const { key, prefix, scope = '' } = config.value
     return [
-      ...info.path,
-      info.key,
+      ...config.value.path,
+      key,
       prefix,
       scope,
-      unitlessKey,
-      ignoreKey,
-      preserveKey,
-      tokenKey,
     ]
   })
 
@@ -62,31 +49,26 @@ export default function useCSSVarRegister<
     computed(() => CSS_VAR_PREFIX),
     stylePath,
     () => {
-      const info = config.value
-      const [mergedToken, cssVarsStr] = transformToken<V, T>(
-        fn(),
-        info.key,
-        {
-          prefix: info.prefix,
-          unitless: info.unitless,
-          ignore: info.ignore,
-          preserve: info.preserve,
-          scope: info.scope,
-        },
-      )
+      const originToken = fn()
+      const { key, prefix, unitless, ignore, hashId, scope = '' } = config.value
+      const hashPriority = styleContext.value.hashPriority!
+      const [mergedToken, cssVarsStr] = transformToken<V, T>(originToken, key, {
+        prefix,
+        unitless,
+        ignore,
+        scope,
+        hashPriority,
+        hashCls: hashId,
+      })
       const styleId = uniqueHash(stylePath.value, cssVarsStr)
-
-      return [mergedToken, cssVarsStr, styleId, info.key]
+      return [mergedToken, cssVarsStr, styleId, key]
     },
     ([, , styleId]) => {
       if (isClientSide) {
-        removeCSS(styleId, {
-          mark: ATTR_MARK,
-          attachTo: styleContext.value.container,
-        })
+        removeCSS(styleId, { mark: ATTR_MARK, attachTo: styleContext.value.container })
       }
     },
-    ([, cssVarsStr, styleId, cssVarKey]) => {
+    ([, cssVarsStr, styleId]) => {
       if (!cssVarsStr) {
         return
       }
@@ -98,8 +80,10 @@ export default function useCSSVarRegister<
         attachTo: context.container,
         priority: -999,
       })
+
       ;(style as any)[CSS_IN_JS_INSTANCE] = context.cache.instanceId
-      style.setAttribute(ATTR_TOKEN, cssVarKey)
+      // Used for `useCacheToken` to remove on batch when token removed
+      style.setAttribute(ATTR_TOKEN, config.value.key)
     },
   )
 }
@@ -117,12 +101,21 @@ export const extract: ExtractStyle<CSSVarCacheValue<any>> = (
   }
 
   const order = -999
+
+  // ====================== Style ======================
+  // Used for rc-util
   const sharedAttrs = {
     'data-rc-order': 'prependQueue',
     'data-rc-priority': `${order}`,
   }
 
-  const styleText = toStyleStr(styleStr, cssVarKey, styleId, sharedAttrs, plain)
+  const styleText = toStyleStr(
+    styleStr,
+    cssVarKey,
+    styleId,
+    sharedAttrs,
+    plain,
+  )
 
   return [order, styleId, styleText]
 }

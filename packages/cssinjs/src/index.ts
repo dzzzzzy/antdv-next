@@ -16,18 +16,20 @@ import {
 } from './linters'
 import { createCache, StyleProvider, useStyleContext, useStyleContextProvide } from './StyleContext'
 import { createTheme, genCalc, Theme } from './theme'
+import autoPrefixTransformer from './transformers/autoPrefix'
 import legacyLogicalPropertiesTransformer from './transformers/legacyLogicalProperties'
 import px2remTransformer from './transformers/px2rem'
 import { supportLogicProps, supportWhere, token2CSSVar, unit } from './util'
 
 export {
+  // Transformer
+  autoPrefixTransformer,
   createCache,
   createTheme,
   extractStyle,
   genCalc,
   getComputedToken,
   Keyframes,
-  // Transformer
   legacyLogicalPropertiesTransformer,
   legacyNotSelectorLinter,
   // Linters

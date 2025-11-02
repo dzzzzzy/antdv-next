@@ -1,5 +1,5 @@
 import type * as CSS from 'csstype'
-import type { Ref, VNodeChild } from 'vue'
+import type { Ref } from 'vue'
 import type Keyframes from '../Keyframes'
 import type { Linter } from '../linters'
 import type { HashPriority } from '../StyleContext'
@@ -11,13 +11,12 @@ import hash from '@emotion/hash'
 import unitless from '@emotion/unitless'
 
 import { removeCSS, updateCSS } from '@v-c/util/dist/Dom/dynamicCSS'
-import { compile, serialize, stringify } from 'stylis'
-import { computed, Fragment, h } from 'vue'
+import { compile, middleware, prefixer, serialize, stringify } from 'stylis'
+import { computed } from 'vue'
 import { contentQuotesLinter, hashedAnimationLinter } from '../linters'
 import {
   ATTR_CACHE_PATH,
   ATTR_MARK,
-  ATTR_TOKEN,
   CSS_IN_JS_INSTANCE,
   useStyleContext,
 } from '../StyleContext'
@@ -88,8 +87,10 @@ export interface CSSObject
 // ==                                 Parser                                 ==
 // ============================================================================
 // Preprocessor style content to browser support one
-export function normalizeStyle(styleStr: string) {
-  const serialized = serialize(compile(styleStr), stringify)
+export function normalizeStyle(styleStr: string, autoPrefix: boolean) {
+  const serialized = autoPrefix
+    ? serialize(compile(styleStr), middleware([prefixer, stringify]))
+    : serialize(compile(styleStr), stringify)
   return serialized.replace(/\{%%%:[^;];\}/g, ';')
 }
 
@@ -148,10 +149,14 @@ export interface ParseInfo {
 }
 
 // Parse CSSObject to style content
-export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig = {}, { root, injectHash, parentSelectors }: ParseInfo = {
-  root: true,
-  parentSelectors: [],
-}): [
+export function parseStyle(
+  interpolation: CSSInterpolation,
+  config: ParseConfig = {},
+  { root, injectHash, parentSelectors }: ParseInfo = {
+    root: true,
+    parentSelectors: [],
+  },
+): [
     parsedStr: string,
     // Style content which should be unique on all of the style (e.g. Keyframes).
     // Firefox will flick with same animation name when exist multiple same keyframes.
@@ -370,14 +375,12 @@ export function uniqueHash(path: (string | number)[], styleStr: string) {
 export const STYLE_PREFIX = 'style'
 
 type StyleCacheValue = [
-  styleStr: string,
-  tokenKey: string,
-  styleId: string,
-  effectStyle: Record<string, string>,
-  clientOnly: boolean | undefined,
-  order: number,
+    styleStr: string,
+    styleId: string,
+    effectStyle: Record<string, string>,
+    clientOnly: boolean | undefined,
+    order: number,
 ]
-
 export default function useStyleRegister(
   info: Ref<{
     theme: Theme<any, any>
@@ -398,20 +401,18 @@ export default function useStyleRegister(
 ) {
   const styleContext = useStyleContext()
 
-  const tokenKey = computed(() => info.value.token?._tokenKey as string)
   const enableLayer = computed(() => !!styleContext.value.layer)
   const order = computed(() => info.value.order ?? 0)
+  const hashId = computed(() => info.value.hashId)
 
-  const fullPath = computed<(string | number)[]>(() => {
-    const path: (string | number)[] = [tokenKey.value]
+  const fullPath = computed<string []>(() => {
+    const path: string[] = [hashId.value || '']
     if (enableLayer.value) {
       path.push('layer')
     }
     path.push(...info.value.path)
     return path
   })
-
-  const cachePath = computed(() => fullPath.value.join('|'))
 
   const isMergedClientSide = computed(() => {
     let merged = isClientSide
@@ -421,19 +422,20 @@ export default function useStyleRegister(
     return merged
   })
 
-  const cacheValue = useGlobalCache<StyleCacheValue>(
+  useGlobalCache<StyleCacheValue>(
     computed(() => STYLE_PREFIX),
     fullPath,
     () => {
+      const cachePath = fullPath.value.join('|')
       const context = styleContext.value
       const infoValue = info.value
 
-      if (existPath(cachePath.value)) {
-        const [inlineCacheStyleStr, styleHash] = getStyleAndHash(cachePath.value)
+      // Get style from SSR inline style directly
+      if (existPath(cachePath)) {
+        const [inlineCacheStyleStr, styleHash] = getStyleAndHash(cachePath)
         if (inlineCacheStyleStr) {
           return [
             inlineCacheStyleStr,
-            tokenKey.value,
             styleHash,
             {},
             infoValue.clientOnly,
@@ -452,48 +454,50 @@ export default function useStyleRegister(
         linters: context.linters || [],
       })
 
-      const styleStr = normalizeStyle(parsedStyle)
+      const styleStr = normalizeStyle(parsedStyle, styleContext.value.autoPrefix || false)
       const styleId = uniqueHash(fullPath.value, styleStr)
 
       return [
         styleStr,
-        tokenKey.value,
         styleId,
         effectStyle,
         infoValue.clientOnly,
         order.value,
       ]
     },
-    ([, , styleId], fromHMR) => {
-      if ((fromHMR || styleContext.value.autoClear) && isClientSide) {
-        removeCSS(styleId, {
-          mark: ATTR_MARK,
-          attachTo: styleContext.value.container,
-        })
+    // Remove cache if no need
+
+    (cacheValue, fromHMR) => {
+      const [, styleId] = cacheValue
+      if (fromHMR && isClientSide) {
+        removeCSS(styleId, { mark: ATTR_MARK })
       }
     },
-    ([styleStr, , styleId, effectStyle]) => {
+    // Effect: Inject style here
+    (cacheValue) => {
+      const [styleStr, styleId, effectStyle, , priority] = cacheValue
       if (!isMergedClientSide.value || styleStr === CSS_FILE_STYLE) {
         return
       }
 
-      const context = styleContext.value
-      const infoValue = info.value
+      const { layer: enableLayer, container, autoPrefix, cache } = styleContext.value
+      const { nonce } = info.value
 
       const mergedCSSConfig: Parameters<typeof updateCSS>[2] = {
         mark: ATTR_MARK,
-        prepend: context.layer ? false : 'queue',
-        attachTo: context.container,
-        priority: order.value,
+        prepend: enableLayer ? false : 'queue',
+        attachTo: container,
+        priority,
       }
 
-      const nonce = infoValue.nonce
       const nonceStr = typeof nonce === 'function' ? nonce() : nonce
 
       if (nonceStr) {
         mergedCSSConfig.csp = { nonce: nonceStr }
       }
 
+      // ================= Split Effect Style =================
+      // We will split effectStyle here since @layer should be at the top level
       const effectLayerKeys: string[] = []
       const effectRestKeys: string[] = []
 
@@ -506,60 +510,36 @@ export default function useStyleRegister(
         }
       })
 
+      // ================= Inject Layer Style =================
+      // Inject layer style
       effectLayerKeys.forEach((effectKey) => {
         updateCSS(
-          normalizeStyle(effectStyle[effectKey]!),
+          normalizeStyle(effectStyle[effectKey]!, autoPrefix || false),
           `_layer-${effectKey}`,
           { ...mergedCSSConfig, prepend: true },
         )
       })
-
+      // ==================== Inject Style ====================
+      // Inject style
       const style = updateCSS(styleStr, styleId, mergedCSSConfig)
 
-      ;(style as any)[CSS_IN_JS_INSTANCE] = context.cache.instanceId
-      style.setAttribute(ATTR_TOKEN, tokenKey.value)
+      ;(style as any)[CSS_IN_JS_INSTANCE] = cache.instanceId
 
       if (isDev) {
-        style.setAttribute(ATTR_CACHE_PATH, cachePath.value)
+        style.setAttribute(ATTR_CACHE_PATH, fullPath.value.join('|'))
       }
 
+      // ================ Inject Effect Style =================
+      // Inject client side effect style
       effectRestKeys.forEach((effectKey) => {
         updateCSS(
-          normalizeStyle(effectStyle[effectKey]!),
+          normalizeStyle(effectStyle[effectKey]!, autoPrefix || false),
           `_effect-${effectKey}`,
           mergedCSSConfig,
         )
       })
     },
   )
-
-  const cachedStyleStr = computed(() => cacheValue.value?.[0] || '')
-  const cachedTokenKey = computed(() => cacheValue.value?.[1] || '')
-  const cachedStyleId = computed(() => cacheValue.value?.[2] || '')
-
-  return (node: VNodeChild) => {
-    if (!cacheValue.value) {
-      return node
-    }
-
-    const context = styleContext.value
-
-    let styleNode: VNodeChild | null = null
-
-    if (context.ssrInline && !isMergedClientSide.value && context.defaultCache) {
-      styleNode = h('style', {
-        [ATTR_TOKEN]: cachedTokenKey.value,
-        [ATTR_MARK]: cachedStyleId.value,
-        innerHTML: cachedStyleStr.value,
-      })
-    }
-
-    if (!styleNode) {
-      return node
-    }
-
-    return h(Fragment, null, [styleNode, node])
-  }
 }
 
 export const extract: ExtractStyle<StyleCacheValue> = (
@@ -567,35 +547,40 @@ export const extract: ExtractStyle<StyleCacheValue> = (
   effectStyles,
   options,
 ) => {
-  const [
-    styleStr,
-    tokenKey,
-    styleId,
-    effectStyle,
-    clientOnly,
-    order,
-  ] = cache
-  const { plain } = options || {}
+  const [styleStr, styleId, effectStyle, clientOnly, order]: StyleCacheValue
+    = cache
+  const { plain, autoPrefix } = options || {}
 
+  // Skip client only style
   if (clientOnly) {
     return null
   }
 
+  let keyStyleText = styleStr
+
+  // ====================== Share ======================
+  // Used for rc-util
   const sharedAttrs = {
     'data-rc-order': 'prependQueue',
     'data-rc-priority': `${order}`,
   }
 
-  let keyStyleText = toStyleStr(styleStr, tokenKey, styleId, sharedAttrs, plain)
+  // ====================== Style ======================
+  keyStyleText = toStyleStr(styleStr, undefined, styleId, sharedAttrs, plain)
 
+  // =============== Create effect style ===============
   if (effectStyle) {
     Object.keys(effectStyle).forEach((effectKey) => {
+      // Effect style can be reused
       if (!effectStyles[effectKey]) {
         effectStyles[effectKey] = true
-        const effectStyleStr = normalizeStyle(effectStyle[effectKey]!)
+        const effectStyleStr = normalizeStyle(
+          effectStyle[effectKey!]!,
+          autoPrefix || false,
+        )
         const effectStyleHTML = toStyleStr(
           effectStyleStr,
-          tokenKey,
+          undefined,
           `_effect-${effectKey}`,
           sharedAttrs,
           plain,

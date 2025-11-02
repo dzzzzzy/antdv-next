@@ -59,6 +59,8 @@ const defaultStyleContext: StyleContextProps = {
   defaultCache: true,
   cache: createCache(),
   hashPriority: 'low',
+  autoPrefix: false,
+
 }
 
 const StyleContextKey: InjectionKey<Ref<StyleContextProps>> = Symbol('StyleContext')
@@ -99,6 +101,9 @@ export interface StyleContextProps {
   linters?: Linter[]
   /** Wrap css in a layer to avoid global style conflict */
   layer?: boolean
+
+  /** Hardcode here since transformer not support take effect on serialize currently */
+  autoPrefix?: boolean
 }
 
 export type StyleProviderProps = StyleContextProps

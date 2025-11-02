@@ -1,10 +1,9 @@
 import type { CSSObject } from '..'
 import type { Transformer } from './interface'
-
 /**
  * respect https://github.com/cuth/postcss-pxtorem
  */
-// @ts-expect-error this package has no types
+// @ts-expect-error this is lib
 import unitless from '@emotion/unitless'
 
 interface Options {

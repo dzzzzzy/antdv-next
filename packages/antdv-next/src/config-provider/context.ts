@@ -17,6 +17,7 @@ import type { ResultProps } from '../result'
 import type { SkeletonProps } from '../skeleton'
 import type { SpaceProps } from '../space'
 import type { SpinProps } from '../spin'
+import type { StatisticProps } from '../statistic'
 import type { TagProps } from '../tag'
 import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../theme/interface'
 import type { RenderEmptyHandler } from './defaultRenderEmpty.tsx'
@@ -167,7 +168,7 @@ export type AlertConfig = ComponentStyleConfig & Pick<AlertProps, 'closable' | '
 
 export type BadgeConfig = ComponentStyleConfig & Pick<BadgeProps, 'classes' | 'styles'>
 
-export type TagConfig = ComponentStyleConfig & Pick<TagProps, 'closeIcon' | 'closable'>
+export type TagConfig = ComponentStyleConfig & Pick<TagProps, 'variant' | 'closeIcon' | 'closable' | 'classes' | 'styles'>
 
 export type EmptyConfig = ComponentStyleConfig & Pick<EmptyProps, 'classes' | 'styles' | 'image'>
 
@@ -186,6 +187,8 @@ export type AnchorStyleConfig = ComponentStyleConfig & Pick<AnchorProps, 'classe
 export type DividerConfig = ComponentStyleConfig & Pick<DividerProps, 'classes' | 'styles'>
 
 export type SkeletonConfig = ComponentStyleConfig & Pick<SkeletonProps, 'styles' | 'classes'>
+
+export type StatisticConfig = ComponentStyleConfig & Pick<StatisticProps, 'classes' | 'styles'>
 
 export interface ConfigComponentProps {
   // input?: InputConfig;
@@ -213,7 +216,7 @@ export interface ConfigComponentProps {
   spin?: SpinConfig
   segmented?: ComponentStyleConfig
   steps?: ComponentStyleConfig
-  statistic?: ComponentStyleConfig
+  statistic?: StatisticConfig
   // image?: ImageConfig;
   layout?: ComponentStyleConfig
   // list?: ListConfig;

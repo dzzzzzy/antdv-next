@@ -1,3 +1,6 @@
+import type { HashPriority } from '../StyleContext'
+import { where } from '../util'
+
 export function token2CSSVar(token: string, prefix = '') {
   return `--${prefix ? `${prefix}-` : ''}${token}`
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
@@ -8,11 +11,14 @@ export function token2CSSVar(token: string, prefix = '') {
 
 export function serializeCSSVar<T extends Record<string, any>>(cssVars: T, hashId: string, options?: {
   scope?: string
+  hashCls?: string
+  hashPriority?: HashPriority
 }) {
+  const { hashCls, hashPriority = 'low' } = options || {}
   if (!Object.keys(cssVars).length) {
     return ''
   }
-  return `.${hashId}${
+  return `${where({ hashCls, hashPriority })}.${hashId}${
     options?.scope ? `.${options.scope}` : ''
   }{${Object.entries(cssVars)
     .map(([key, value]) => `${key}:${value};`)
@@ -41,24 +47,41 @@ export function transformToken<
     [key in keyof T]?: boolean;
   }
   scope?: string
+  hashCls?: string
+  hashPriority?: HashPriority
 }): [TokenWithCSSVar<V, T>, string] {
+  const {
+    hashCls,
+    hashPriority = 'low',
+    prefix,
+    unitless,
+    ignore,
+    preserve,
+  } = config || {}
   const cssVars: Record<string, string> = {}
   const result: TokenWithCSSVar<V, T> = {}
   Object.entries(token).forEach(([key, value]) => {
-    if (config?.preserve?.[key]) {
+    if (preserve?.[key]) {
       result[key as keyof T] = value
     }
     else if (
       (typeof value === 'string' || typeof value === 'number')
-      && !config?.ignore?.[key]
+      && !ignore?.[key]
     ) {
-      const cssVar = token2CSSVar(key, config?.prefix)
+      const cssVar = token2CSSVar(key, prefix)
       cssVars[cssVar]
-        = typeof value === 'number' && !config?.unitless?.[key]
+        = typeof value === 'number' && !unitless?.[key]
           ? `${value}px`
           : String(value)
       result[key as keyof T] = `var(${cssVar})`
     }
   })
-  return [result, serializeCSSVar(cssVars, themeKey, { scope: config?.scope })]
+  return [
+    result,
+    serializeCSSVar(cssVars, themeKey, {
+      scope: config?.scope,
+      hashCls,
+      hashPriority,
+    }),
+  ]
 }

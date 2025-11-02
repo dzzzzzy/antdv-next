@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import type { KeyType } from '../Cache'
-import { computed, watch, watchEffect } from 'vue'
+import { computed, nextTick, watch, watchEffect } from 'vue'
 import { pathKey } from '../Cache'
 import { useStyleContext } from '../StyleContext'
 
@@ -9,10 +9,13 @@ export type ExtractStyle<CacheValue> = (
   effectStyles: Record<string, boolean>,
   options?: {
     plain?: boolean
+    autoPrefix?: boolean
   },
 ) => [order: number, styleId: string, style: string] | null
 // @ts-expect-error // FIXME:
 const isDev = process.env.NODE_ENV !== 'production'
+const effectMap = new Map<string, boolean>()
+
 /**
  * Global cache for CSS-in-JS styles
  *
@@ -50,38 +53,6 @@ export function useGlobalCache<CacheType>(
     })
   }
 
-  // Initial cache creation - watch for keyPath changes
-  watch(
-    fullPathStr,
-    (_, _1, onCleanup) => {
-    // Build or retrieve cache
-      buildCache(([times, cache]) => [times + 1, cache])
-      const globalCache = styleContext.value.cache
-
-      // Cleanup on unmount or when fullPathStr changes
-      onCleanup(() => {
-        globalCache.opUpdate(fullPathStr.value, (prevCache) => {
-          if (!prevCache)
-            return null
-
-          const [times = 0, cache] = prevCache
-          const nextCount = times - 1
-
-          if (nextCount === 0) {
-          // Last reference, remove cache
-            onCacheRemove?.(cache, false)
-            return null
-          }
-
-          return [nextCount, cache]
-        })
-      })
-    },
-    {
-      immediate: true,
-    },
-  )
-
   const getCacheEntity = () => styleContext.value.cache.opGet(fullPathStr.value)
 
   const cacheContent = computed(() => {
@@ -92,8 +63,49 @@ export function useGlobalCache<CacheType>(
       entity = getCacheEntity()
     }
 
-    return entity![1]
+    return entity![1]!
   })
+
+  // Initial cache creation - watch for keyPath changes
+  watch(
+    fullPathStr,
+    async (_, _1, onCleanup) => {
+      await nextTick()
+      // Build or retrieve cache
+      buildCache(([times, cache]) => [times + 1, cache])
+      if (!effectMap.has(fullPathStr.value)) {
+        onCacheEffect?.(cacheContent.value)
+        effectMap.set(fullPathStr.value, true)
+        // 微任务清理混存，可以认为是单次 batch render 中只触发一次 effect
+        Promise.resolve().then(() => {
+          effectMap.delete(fullPathStr.value)
+        })
+      }
+      const globalCache = styleContext.value.cache
+
+      // Cleanup on unmount or when fullPathStr changes
+      onCleanup(() => {
+        globalCache.opUpdate(fullPathStr.value, (prevCache) => {
+          // if (!prevCache)
+          //   return null
+          const [times = 0, cache] = prevCache || []
+          const nextCount = times - 1
+
+          if (nextCount === 0) {
+          // Last reference, remove cache
+            onCacheRemove?.(cache, false)
+            effectMap.delete(fullPathStr.value)
+            return null
+          }
+
+          return [times - 1, cache]
+        })
+      })
+    },
+    {
+      immediate: true,
+    },
+  )
 
   // Trigger effect callback when cache is ready
   if (onCacheEffect) {
