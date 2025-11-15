@@ -6,8 +6,7 @@ import { clsx } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { omit } from 'es-toolkit'
 import { computed, defineComponent } from 'vue'
-import { pureAttrs, useMergeSemantic, useToArr, useToProps } from '../_util/hooks'
-import { useZIndex } from '../_util/hooks/useZIndex'
+import { pureAttrs, useMergeSemantic, useToArr, useToProps, useZIndex } from '../_util/hooks'
 import getPlacements from '../_util/placements'
 import { toPropsRefs } from '../_util/tools'
 import { checkRenderNode } from '../_util/vueNode.ts'
@@ -66,7 +65,7 @@ const Tour = defineComponent<
         return {
           ...restStep,
           className: stepClass,
-        } as VcTourProps['steps'][number]
+        } as any
       })
     })
 

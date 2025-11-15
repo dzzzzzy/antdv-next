@@ -3,12 +3,17 @@ import type { RenderNodeFn, VueNode } from '../type.ts'
 import { CloseOutlined } from '@antdv-next/icons'
 import pickAttrs from '@v-c/util/dist/pickAttrs'
 import { filterEmpty } from '@v-c/util/dist/props-util'
-import { computed, createVNode, isVNode, ref } from 'vue'
+import { computed, createVNode, isVNode, ref, unref } from 'vue'
 import defaultLocale from '../../locale/en_US'
 import useLocale from '../../locale/useLocale.ts'
 import extendsObject from '../extendsObject'
+import isNonNullable from '../isNonNullable.ts'
+import { getSlotPropsFnRun } from '../tools.ts'
 import { getVNode } from '../vueNode.ts'
 
+interface DataAttributes {
+  [key: `data-${string}`]: string
+}
 export type ClosableType = boolean | ({
   closeIcon?: VueNode
   disabled?: boolean
@@ -155,4 +160,117 @@ export default function useClosable(
       return [true, mergedCloseIcon, closeBtnIsDisabled.value, ariaOrDataProps]
     }
   })
+}
+
+function computeClosableConfig(closable?: ClosableType, closeIcon?: VueNode): ClosableType | boolean | null {
+  if (!closable && (closable === false || closeIcon === false || closeIcon === null)) {
+    return false
+  }
+
+  if (closable === undefined && closeIcon === undefined) {
+    return null
+  }
+
+  let closableConfig: ClosableType = {
+    closeIcon: typeof closeIcon !== 'boolean' && closeIcon !== null ? closeIcon : undefined,
+  }
+
+  if (closable && typeof closable === 'object') {
+    closableConfig = {
+      ...closableConfig,
+      ...closable,
+    }
+  }
+  return closableConfig
+}
+
+function computeCloseIcon(
+  mergedConfig: ClosableCollection,
+  fallbackCloseCollection: FallbackCloseCollection,
+  closeLabel: string,
+): [VueNode, AriaAttributes & DataAttributes] {
+  const { closeIconRender } = fallbackCloseCollection
+  const { closeIcon, ...restConfig } = mergedConfig
+
+  let finalCloseIcon = getSlotPropsFnRun({}, { closeIcon }, 'closeIcon')
+  const ariaOrDataProps = pickAttrs(restConfig, true)
+
+  if (isNonNullable(finalCloseIcon)) {
+    if (closeIconRender) {
+      finalCloseIcon = closeIconRender(finalCloseIcon)
+    }
+
+    finalCloseIcon = isVNode(finalCloseIcon)
+      ? (
+          createVNode(finalCloseIcon, {
+            'aria-label': closeLabel,
+            ...ariaOrDataProps,
+          })
+        )
+      : (
+          <span aria-label={closeLabel} {...ariaOrDataProps}>
+            {finalCloseIcon}
+          </span>
+        )
+  }
+
+  return [finalCloseIcon, ariaOrDataProps]
+}
+
+function mergeClosableConfigs(
+  propConfig: ReturnType<typeof computeClosableConfig>,
+  contextConfig: ReturnType<typeof computeClosableConfig>,
+  fallbackConfig: ClosableCollection & { closeIconRender?: (icon: VNodeChild) => VNodeChild },
+) {
+  if (propConfig === false) {
+    return false
+  }
+  if (propConfig) {
+    return extendsObject(fallbackConfig, contextConfig, propConfig)
+  }
+
+  if (contextConfig === false) {
+    return false
+  }
+  if (contextConfig) {
+    return extendsObject(fallbackConfig, contextConfig)
+  }
+
+  return fallbackConfig.closable ? fallbackConfig : false
+}
+
+export function computeClosable(
+  propCloseCollection?: Ref<ClosableCollection>,
+  contextCloseCollection?: Ref<ClosableCollection | null>,
+  fallbackCloseCollection: Ref<FallbackCloseCollection> = ref(EmptyFallbackCloseCollection),
+  closeLabel = 'Close',
+): [
+    closable: boolean,
+    closeIcon: VueNode,
+    closeBtnIsDisabled: boolean,
+    ariaOrDataProps: AriaAttributes & DataAttributes,
+] {
+  const propConfig = computeClosableConfig(
+    unref(propCloseCollection)?.closable,
+    unref(propCloseCollection)?.closeIcon,
+  )
+  const contextConfig = computeClosableConfig(
+    unref(contextCloseCollection)?.closable,
+    unref(contextCloseCollection)?.closeIcon,
+  )
+
+  const mergedFallback = {
+    closeIcon: <CloseOutlined />,
+    ...fallbackCloseCollection.value,
+  }
+
+  const mergedConfig = mergeClosableConfigs(propConfig, contextConfig, mergedFallback)
+
+  const closeBtnIsDisabled = typeof mergedConfig !== 'boolean' ? !!(mergedConfig as any)?.disabled : false
+  if (mergedConfig === false) {
+    return [false, null, closeBtnIsDisabled, {}]
+  }
+
+  const [closeIcon, ariaProps] = computeCloseIcon(mergedConfig, mergedFallback, closeLabel)
+  return [true, closeIcon, closeBtnIsDisabled, ariaProps]
 }

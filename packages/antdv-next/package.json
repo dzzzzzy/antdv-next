@@ -16,6 +16,7 @@
     "@v-c/dropdown": "^0.0.3",
     "@v-c/menu": "^0.0.7",
     "@v-c/mutate-observer": "catalog:",
+    "@v-c/notification": "link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/notification",
     "@v-c/qrcode": "catalog:",
     "@v-c/resize-observer": "catalog:",
     "@v-c/segmented": "^0.0.8",

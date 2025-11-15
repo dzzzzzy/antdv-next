@@ -67,7 +67,7 @@ export interface NotificationConfig {
   showProgress?: boolean
   pauseOnHover?: boolean
   closeIcon?: VueNode
-  classNames?: NotificationClassNamesType
+  classes?: NotificationClassNamesType
   styles?: NotificationStylesType
 }
 
