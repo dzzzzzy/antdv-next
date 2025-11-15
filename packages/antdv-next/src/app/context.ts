@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import type { NotificationConfig, NotificationInstance } from '../notification/interface'
+import type { NotificationConfig } from '../notification/interface'
 import { defineComponent, inject, provide } from 'vue'
 
 export interface AppConfig {
@@ -7,13 +7,9 @@ export interface AppConfig {
   notification?: NotificationConfig
 }
 
-const AppConfigContextKey: InjectionKey<UseAppProps> = Symbol('AppConfigContext')
+const AppConfigContextKey: InjectionKey<AppConfig> = Symbol('AppConfigContext')
 
-export interface UseAppProps {
-  notification: NotificationInstance
-}
-
-export const AppConfigProvider = defineComponent<UseAppProps>(
+export const AppConfigProvider = defineComponent<AppConfig>(
   (props, { slots }) => {
     provide(AppConfigContextKey, props)
     return () => {
@@ -23,7 +19,5 @@ export const AppConfigProvider = defineComponent<UseAppProps>(
 )
 
 export function useAppConfig() {
-  return inject(AppConfigContextKey, {
-    notification: {},
-  } as UseAppProps)
+  return inject(AppConfigContextKey, {} as AppConfig)
 }

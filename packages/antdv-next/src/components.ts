@@ -30,6 +30,7 @@ export { default as Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSid
 export type { LayoutProps } from './layout'
 export { default as Menu, MenuDivider, MenuItem, SubMenu } from './menu'
 export type { MenuEmits, MenuItemGroupProps, MenuItemProps, MenuItemType, MenuProps, MenuRef, MenuSlots, SubMenuProps } from './menu'
+export { default as notification } from './notification'
 export { default as Popconfirm } from './popconfirm'
 export type { PopconfirmEmits, PopconfirmProps, PopconfirmSlots } from './popconfirm'
 export { default as Popover } from './popover'

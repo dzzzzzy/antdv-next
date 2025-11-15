@@ -1,4 +1,3 @@
-import type { NoticeProps } from '@v-c/notification'
 import type { SemanticClassNames, SemanticClassNamesType, SemanticStyles, SemanticStylesType } from '../_util/hooks'
 import type { VueNode } from '../_util/type'
 import type { IconType, NotificationSemantic } from './interface'
@@ -121,12 +120,22 @@ export const PureContent = defineComponent<PureContentProps>(
 )
 
 export interface PurePanelProps extends
-  Omit<NoticeProps, 'prefixCls' | 'eventKey' | 'classNames' | 'styles' | 'className' | 'style'>,
+  // Omit<NoticeConfig, 'prefixCls' | 'eventKey' | 'classNames' | 'styles' | 'className' | 'style'>,
   Omit<PureContentProps, 'prefixCls' | 'children' | 'classes' | 'styles'> {
+  content?: VueNode
+  duration?: number | false | null
+  showProgress?: boolean
+  pauseOnHover?: boolean
+  closable?:
+    | boolean
+    | ({ closeIcon?: VueNode, onClose?: VoidFunction } & Record<string, any>)
   prefixCls?: string
   classes?: PurePanelClassNamesType
   styles?: PurePanelStylesType
   closeIcon?: VueNode
+  props?: Record<string, any>
+  onClose?: VoidFunction
+  onClick?: (event: Event) => void
 }
 
 const omitKeys = [
