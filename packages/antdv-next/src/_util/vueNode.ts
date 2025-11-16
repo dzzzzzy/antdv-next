@@ -29,6 +29,9 @@ export function getVNode(node: VueNode) {
 }
 
 export function checkRenderNode(node: any) {
+  if (!node) {
+    return undefined
+  }
   const child = Array.isArray(node) ? node : [node]
   const pureChild = filterEmpty(child)
   if (pureChild.length > 0) {

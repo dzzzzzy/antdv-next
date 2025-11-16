@@ -6,6 +6,7 @@ import type { ShowWaveEffect } from '../_util/wave/interface.ts'
 import type { AlertProps } from '../alert'
 import type { AnchorProps } from '../anchor'
 import type { BadgeProps } from '../badge'
+import type { BreadcrumbProps } from '../breadcrumb/Breadcrumb.tsx'
 import type { ButtonProps } from '../button'
 import type { CollapseProps } from '../collapse'
 import type { DescriptionsProps } from '../descriptions'
@@ -226,8 +227,9 @@ export type MenuConfig = ComponentStyleConfig & Pick<MenuProps, 'expandIcon' | '
 
 export type TourConfig = ComponentStyleConfig & Pick<TourProps, 'closeIcon' | 'classes' | 'styles'>
 
-export type NotificationConfig = ComponentStyleConfig
-  & Pick<NotificationProps, 'closeIcon' | 'classes' | 'styles'>
+export type NotificationConfig = ComponentStyleConfig & Pick<NotificationProps, 'closeIcon' | 'classes' | 'styles'>
+
+export type BreadcrumbConfig = ComponentStyleConfig & Pick<BreadcrumbProps, 'classes' | 'styles' | 'separator'>
 
 export interface ConfigComponentProps {
   // input?: InputConfig;
@@ -264,7 +266,7 @@ export interface ConfigComponentProps {
   progress?: ComponentStyleConfig
   result?: ResultConfig
   // slider?: SliderConfig;
-  breadcrumb?: ComponentStyleConfig
+  breadcrumb?: BreadcrumbConfig
   menu?: MenuConfig
   checkbox?: ComponentStyleConfig
   descriptions?: DescriptionsConfig

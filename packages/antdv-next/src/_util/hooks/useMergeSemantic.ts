@@ -204,3 +204,11 @@ export function pureAttrs(attrs: Record<string, any>, options: RemoveBaseAttribu
   }
   return newAttrs
 }
+
+export function getAttrStyleAndClass(attrs: Record<string, any>, options?: RemoveBaseAttributesOptions) {
+  return {
+    className: attrs.class,
+    style: attrs.style,
+    restAttrs: pureAttrs(attrs, options),
+  } as { className: any, style: any, restAttrs: Record<string, any> }
+}
