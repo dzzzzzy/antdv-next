@@ -36,6 +36,19 @@ export { default as Form, FormItem } from './form'
 export type { FormEmits, FormInstance, FormProps, FormSlots } from './form'
 export { Col, Row } from './grid'
 export type { ColProps, ColSize, RowProps } from './grid'
+export { default as Input } from './input'
+export type {
+  InputEmits,
+  InputGroupProps,
+  OTPProps as InputOTPProps,
+  PasswordProps as InputPasswordProps,
+  InputProps,
+  InputRef,
+  SearchProps as InputSearchProps,
+  InputSlots,
+  TextAreaProps,
+  TextAreaRef,
+} from './input'
 export { default as Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSider, useLayoutSider } from './layout'
 export type { LayoutProps } from './layout'
 export { default as Menu, MenuDivider, MenuItem, SubMenu } from './menu'

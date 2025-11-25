@@ -1,4 +1,5 @@
 import type { VNode, VNodeChild } from 'vue'
+import type { JSX } from 'vue/jsx-runtime'
 
 export type AnyObject = Record<PropertyKey, any>
 
@@ -6,7 +7,7 @@ export type EmptyObject = Record<never, never>
 
 export type RenderNodeFn<Args extends any[] = any[]> = (...args: Args) => VNodeChild
 
-export type VueNode<Args extends any[] = any[]> = RenderNodeFn<Args> | boolean | string | number | null | undefined | VNode
+export type VueNode<Args extends any[] = any[]> = RenderNodeFn<Args> | JSX.Element | boolean | string | number | null | undefined | VNode
 
 export type EmitsArrToEvent<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends any[] ? (...args: T[K]) => void : T[K]

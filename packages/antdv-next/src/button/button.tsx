@@ -1,6 +1,6 @@
 import type { App, SlotsType } from 'vue'
 import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
-import type { RenderNodeFn } from '../_util/type.ts'
+import type { RenderNodeFn, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import type { SizeType } from '../config-provider/SizeContext'
 import type { ButtonColorType, ButtonHTMLType, ButtonShape, ButtonType, ButtonVariantType } from './buttonHelper.tsx'
@@ -42,7 +42,7 @@ export interface BaseButtonProps extends ComponentBaseProps {
   type?: ButtonType
   color?: ButtonColorType
   variant?: ButtonVariantType
-  icon?: RenderNodeFn
+  icon?: VueNode
   iconPlacement?: 'start' | 'end' // deprecated
   shape?: ButtonShape
   size?: SizeType

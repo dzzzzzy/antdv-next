@@ -17,6 +17,9 @@ import type { FlexProps } from '../flex'
 import type { FloatButtonGroupProps, FloatButtonProps } from '../float-button'
 import type { FormProps } from '../form/Form.tsx'
 import type { InputProps } from '../input/Input.tsx'
+import type { OTPProps } from '../input/OTP'
+import type { SearchProps } from '../input/Search.tsx'
+import type { TextAreaProps } from '../input/TextArea.tsx'
 import type { Locale } from '../locale'
 import type { MasonryProps } from '../masonry/Masonry.tsx'
 import type { MenuProps } from '../menu'
@@ -258,12 +261,18 @@ export type SwitchStyleConfig = ComponentStyleConfig & Pick<SwitchProps, 'classe
 
 export type InputConfig = ComponentStyleConfig
   & Pick<InputProps, 'autoComplete' | 'classes' | 'styles' | 'allowClear' | 'variant'>
+export type TextAreaConfig = ComponentStyleConfig
+  & Pick<TextAreaProps, 'classes' | 'styles' | 'allowClear' | 'variant'>
+export type InputSearchConfig = ComponentStyleConfig & Pick<SearchProps, 'classes' | 'styles'>
+export type OTPConfig = ComponentStyleConfig & Pick<OTPProps, 'classes' | 'styles' | 'variant'>
 
 export interface ConfigComponentProps {
   input?: InputConfig
-  // textArea?: TextAreaConfig;
+  textArea?: TextAreaConfig
   // inputNumber?: InputNumberConfig;
   // pagination?: PaginationConfig;
+  inputSearch?: InputSearchConfig
+  otp?: OTPConfig
   space?: SpaceConfig
   splitter?: ComponentStyleConfig
   form?: FormConfig
@@ -343,7 +352,7 @@ export interface ConfigConsumerProps extends ConfigComponentProps {
   csp?: CSPConfig
   /** @deprecated Please use `{ button: { autoInsertSpace: boolean }}` instead */
   autoInsertSpaceInButton?: boolean
-  // variant?: Variant
+  variant?: Variant
   virtual?: boolean
   locale?: Locale
   direction?: DirectionType
