@@ -51,13 +51,18 @@ export interface OTPEmits {
   [key: string]: any
 }
 
+export interface OPTSlots {
+  default: () => any
+  separator: (i: number) => any
+}
+
 const OTP = defineComponent<
   OTPProps,
   OTPEmits,
   string,
-  SlotsType<{ default?: () => any }>
+  SlotsType<OPTSlots>
 >(
-  (props, { attrs, emit }) => {
+  (props, { attrs, emit, slots }) => {
     if (isDev) {
       const warning = devUseWarning('InputOTP')
       warning(!(typeof props.mask === 'string' && props.mask.length > 1), 'usage', '`mask` prop should be a single character.')
@@ -170,7 +175,8 @@ const OTP = defineComponent<
     }
 
     const renderSeparator = (index: number) => {
-      const separatorNode = typeof props.separator === 'function' ? props.separator(index) : props.separator
+      const separator = slots.separator || props.separator
+      const separatorNode = typeof separator === 'function' ? separator(index) : separator
       if (!separatorNode) {
         return null
       }

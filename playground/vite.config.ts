@@ -31,6 +31,9 @@ export default defineConfig({
       '@v-c/util',
       '@v-c/menu',
       '@v-c/tour',
+      '@v-c/input',
+      '@v-c/input-number',
+      '@v-c/textarea',
     ],
   },
   resolve: {

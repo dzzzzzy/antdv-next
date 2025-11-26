@@ -20,7 +20,7 @@ import { useSize } from '../config-provider/hooks/useSize'
 import { useFormItemInputContext } from '../form/context.tsx'
 import useVariant from '../form/hooks/useVariant'
 import { useCompactItemContext } from '../space/Compact.tsx'
-import useSharedStyle from './style'
+import { useSharedStyle } from './style'
 import useStyle from './style/textarea'
 
 type SemanticName = 'root' | 'textarea' | 'count'
@@ -99,7 +99,7 @@ const InternalTextArea = defineComponent<
   (props, { slots, attrs, emit, expose }) => {
     if (isDev) {
       const warning = devUseWarning('TextArea')
-      warning.deprecated(props.bordered !== undefined, 'bordered', 'variant')
+      warning.deprecated(props.bordered === undefined, 'bordered', 'variant')
     }
 
     const {
@@ -262,14 +262,13 @@ const InternalTextArea = defineComponent<
           hashId.value,
         ),
       }
-
       return (
         <VcTextArea
           {...restAttrs}
           {...restProps}
           ref={textAreaRef as any}
           prefixCls={prefixCls.value}
-          class={classesValue}
+          className={classesValue}
           style={mergedStyle}
           classNames={classNames as any}
           styles={mergedStyles.value as any}

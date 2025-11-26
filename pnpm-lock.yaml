@@ -263,8 +263,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1(vue@3.5.24(typescript@5.9.3))
       '@v-c/textarea':
-        specifier: ^0.0.1
-        version: 0.0.1(vue@3.5.24(typescript@5.9.3))
+        specifier: ^0.0.4
+        version: 0.0.4(vue@3.5.24(typescript@5.9.3))
       '@v-c/tooltip':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.24(typescript@5.9.3))
@@ -1574,6 +1574,11 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
+  '@v-c/input@0.0.2':
+    resolution: {integrity: sha512-AL5bRTO00CkA7vJZ+JS5sNgy/zrfmQWe4dRUoyZf/RWlVF/OWLnOr/rENKfQa6t4hFgcObt28YtCZewG3+KrPQ==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@v-c/menu@1.0.0':
     resolution: {integrity: sha512-k28vPfAzSWuwm0EZroroGa/tvcv6lWo4YROT3YfRkeZo3u3bCuvvHXh7a3iaMKebiN/2mmT8bMXzNC+lb4Ls3w==}
     peerDependencies:
@@ -1612,11 +1617,6 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@v-c/resize-observer@0.0.4':
-    resolution: {integrity: sha512-2vsrAlHwnA7gPXe/pc3G/scqlR6wr2zq5BmaHL5lQ4ZZ0qBqsOtqUwofUGPUumweUzHT6JEJPLN3y9v0EQlWvQ==}
-    peerDependencies:
-      vue: ^3.0.0
-
   '@v-c/resize-observer@1.0.0':
     resolution: {integrity: sha512-2gTxvnEpNimzufFgaMXuLyvPoKPnL1wEgphxNi65AtJxegWCu5NVw/N3DzJEHtwaEYQwVlhWagt6kbGtkyKQfQ==}
     peerDependencies:
@@ -1637,8 +1637,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@v-c/textarea@0.0.1':
-    resolution: {integrity: sha512-dqlGUvbucnb7mU+h04mmzKaLNUh5YlCD9D1ldyMmVhBy1cCDTIrmebZrpTnJ0SDykstcDn1QZG8V7Y1k4KF3zA==}
+  '@v-c/textarea@0.0.4':
+    resolution: {integrity: sha512-35ZxTey8E2h3dnIPOHLJoRg4Ube4QMAO5RAHFvU5Wmjj4wxZVca2l0vUqZ2tcmX7/uuq1v9b+MfLNvJBesxX4w==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -5097,6 +5097,11 @@ snapshots:
       '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
+  '@v-c/input@0.0.2(vue@3.5.24(typescript@5.9.3))':
+    dependencies:
+      '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
+      vue: 3.5.24(typescript@5.9.3)
+
   '@v-c/menu@1.0.0(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@v-c/overflow': 1.0.0(vue@3.5.24(typescript@5.9.3))
@@ -5140,12 +5145,6 @@ snapshots:
       resize-observer-polyfill: 1.5.1
       vue: 3.5.24(typescript@5.9.3)
 
-  '@v-c/resize-observer@0.0.4(vue@3.5.24(typescript@5.9.3))':
-    dependencies:
-      '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
-      resize-observer-polyfill: 1.5.1
-      vue: 3.5.24(typescript@5.9.3)
-
   '@v-c/resize-observer@1.0.0(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
@@ -5167,10 +5166,10 @@ snapshots:
       '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
-  '@v-c/textarea@0.0.1(vue@3.5.24(typescript@5.9.3))':
+  '@v-c/textarea@0.0.4(vue@3.5.24(typescript@5.9.3))':
     dependencies:
-      '@v-c/input': 0.0.1(vue@3.5.24(typescript@5.9.3))
-      '@v-c/resize-observer': 0.0.4(vue@3.5.24(typescript@5.9.3))
+      '@v-c/input': 0.0.2(vue@3.5.24(typescript@5.9.3))
+      '@v-c/resize-observer': 1.0.0(vue@3.5.24(typescript@5.9.3))
       '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
