@@ -38,6 +38,7 @@ import type { SpinProps } from '../spin'
 import type { StatisticProps } from '../statistic'
 import type { SwitchProps } from '../switch'
 import type { TagProps } from '../tag'
+import type { BlockProps as TypographyBaseProps } from '../typography/interface'
 import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../theme/interface'
 import type { TooltipProps } from '../tooltip'
 import type { TourProps } from '../tour'
@@ -211,6 +212,8 @@ export type SkeletonConfig = ComponentStyleConfig & Pick<SkeletonProps, 'styles'
 
 export type StatisticConfig = ComponentStyleConfig & Pick<StatisticProps, 'classes' | 'styles'>
 
+export type TypographyConfig = ComponentStyleConfig & Pick<TypographyBaseProps, 'classes' | 'styles'>
+
 export type FloatButtonConfig = ComponentStyleConfig & Pick<FloatButtonProps, 'classes' | 'styles'> & {
   backTopIcon?: VueNode
 }
@@ -299,7 +302,7 @@ export interface ConfigComponentProps {
   collapse?: CollapseConfig
   floatButton?: FloatButtonConfig
   floatButtonGroup?: FloatButtonGroupConfig
-  typography?: ComponentStyleConfig
+  typography?: TypographyConfig
   skeleton?: SkeletonConfig
   spin?: SpinConfig
   segmented?: SegmentedConfig

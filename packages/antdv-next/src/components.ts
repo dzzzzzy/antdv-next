@@ -95,5 +95,19 @@ export { default as Tooltip, UniqueProvider } from './tooltip'
 export type { TooltipAlignConfig, TooltipEmits, TooltipPlacement, TooltipProps, TooltipRef, TooltipSlots } from './tooltip'
 export { default as Tour } from './tour'
 export type { TourEmits, TourLocale, TourProps, TourSlots, TourStepItem, TourStylesType } from './tour'
+export {
+  TypographyLink,
+  TypographyParagraph,
+  TypographyText,
+  TypographyTitle,
+  default as Typography,
+} from './typography'
+export type {
+  BlockProps as TypographyBaseProps,
+  LinkProps as TypographyLinkProps,
+  ParagraphProps as TypographyParagraphProps,
+  TextProps as TypographyTextProps,
+  TitleProps as TypographyTitleProps,
+} from './typography'
 export { default as Watermark } from './watermark'
 export type { WatermarkProps } from './watermark'

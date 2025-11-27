@@ -57,6 +57,7 @@ export interface TextAreaProps
   variant?: Variant
   classes?: TextAreaClassNamesType
   styles?: TextAreaStylesType
+  rows?: number
 }
 
 export interface TextAreaEmits {
