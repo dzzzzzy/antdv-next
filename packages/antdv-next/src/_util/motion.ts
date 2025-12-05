@@ -70,6 +70,10 @@ function initCollapseMotion(rootCls = defaultPrefixCls, appear = true): Transiti
   }
 }
 
+const _SelectPlacements = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'] as const
+
+export type SelectCommonPlacement = (typeof _SelectPlacements)[number]
+
 export default initCollapseMotion
 
 export type CssUtil = any

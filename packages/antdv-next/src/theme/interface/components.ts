@@ -43,7 +43,7 @@ import type { ComponentToken as RadioComponentToken } from '../../radio/style'
 // import type { ComponentToken as RateComponentToken } from '../../rate/style';
 import type { ComponentToken as ResultComponentToken } from '../../result/style'
 import type { ComponentToken as SegmentedComponentToken } from '../../segmented/style'
-// import type { ComponentToken as SelectComponentToken } from '../../select/style';
+import type { ComponentToken as SelectComponentToken } from '../../select/style'
 import type { ComponentToken as SkeletonComponentToken } from '../../skeleton/style'
 import type { ComponentToken as SliderComponentToken } from '../../slider/style'
 import type { ComponentToken as SpaceComponentToken } from '../../space/style'
@@ -103,7 +103,7 @@ export interface ComponentTokenMap {
   Radio?: RadioComponentToken
   Result?: ResultComponentToken
   Segmented?: SegmentedComponentToken
-  // Select?: SelectComponentToken;
+  Select?: SelectComponentToken
   Skeleton?: SkeletonComponentToken
   Slider?: SliderComponentToken
   Spin?: SpinComponentToken

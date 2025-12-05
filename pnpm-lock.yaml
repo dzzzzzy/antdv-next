@@ -259,6 +259,9 @@ importers:
       '@v-c/segmented':
         specifier: ^0.0.8
         version: 0.0.8(vue@3.5.24(typescript@5.9.3))
+      '@v-c/select':
+        specifier: ^0.0.1
+        version: 0.0.1(vue@3.5.24(typescript@5.9.3))
       '@v-c/slider':
         specifier: ^1.0.7
         version: 1.0.7(vue@3.5.24(typescript@5.9.3))
@@ -283,6 +286,9 @@ importers:
       '@v-c/util':
         specifier: ^1.0.1
         version: 1.0.1(vue@3.5.24(typescript@5.9.3))
+      '@v-c/virtual-list':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.24(typescript@5.9.3))
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.9.0(vue@3.5.24(typescript@5.9.3))
@@ -1700,6 +1706,11 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
+  '@v-c/select@0.0.1':
+    resolution: {integrity: sha512-PLosS232tj4+QmUCN7uUId0K4n79HzPxcYavbjEO1OORc3hqfMhjfQBfWx/goLY44hAoFxU6uXek1dfQaLso+Q==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@v-c/slider@1.0.7':
     resolution: {integrity: sha512-3YV8m4k1cceqIIyB4ft/LS7qJzzATV1OMBzWlgwW7rip22h6zCCFzkm8nr9LnTx9LJU7BRx9gAGSlBUzJHy5JA==}
     peerDependencies:
@@ -1737,6 +1748,11 @@ packages:
 
   '@v-c/util@1.0.1':
     resolution: {integrity: sha512-YvSTY500qst//lTQa4c9z0BRFVkn9Yu0ktPb6aoIMselF7MrS7S21b6cS5TUxTf6uNIpivv4MZZN/WUguzyl4Q==}
+    peerDependencies:
+      vue: ^3.0.0
+
+  '@v-c/virtual-list@1.0.0':
+    resolution: {integrity: sha512-kZ7KYSKYQ+6Bd6nN/BJvwfj5oydBN6iSKa6AUBPLOUK7cT6qe89bVE0vcgvCOB6msxECZ4SCAR/O9oFPq/L1Gg==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -5439,6 +5455,14 @@ snapshots:
       '@v-c/util': 1.0.1(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
+  '@v-c/select@0.0.1(vue@3.5.24(typescript@5.9.3))':
+    dependencies:
+      '@v-c/overflow': 1.0.0(vue@3.5.24(typescript@5.9.3))
+      '@v-c/trigger': 1.0.1(vue@3.5.24(typescript@5.9.3))
+      '@v-c/util': 1.0.1(vue@3.5.24(typescript@5.9.3))
+      '@v-c/virtual-list': 1.0.0(vue@3.5.24(typescript@5.9.3))
+      vue: 3.5.24(typescript@5.9.3)
+
   '@v-c/slider@1.0.7(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@v-c/util': 1.0.1(vue@3.5.24(typescript@5.9.3))
@@ -5491,6 +5515,12 @@ snapshots:
 
   '@v-c/util@1.0.1(vue@3.5.24(typescript@5.9.3))':
     dependencies:
+      vue: 3.5.24(typescript@5.9.3)
+
+  '@v-c/virtual-list@1.0.0(vue@3.5.24(typescript@5.9.3))':
+    dependencies:
+      '@v-c/resize-observer': 1.0.0(vue@3.5.24(typescript@5.9.3))
+      '@v-c/util': 1.0.1(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
   '@vitejs/plugin-vue-jsx@5.1.1(rolldown-vite@7.2.7(@types/node@24.10.0)(esbuild@0.25.11)(jiti@2.6.1)(tsx@4.20.6)(yaml@2.8.1))(vue@3.5.24(typescript@5.9.3))':
