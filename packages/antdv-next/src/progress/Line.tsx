@@ -87,7 +87,7 @@ const Line = defineComponent<
   (props, { slots }) => {
     if (isDev) {
       const warning = devUseWarning('Progress')
-      warning.deprecated(!(props.strokeWidth === undefined), 'strokeWidth', 'size')
+      warning.deprecated(!(props.strokeWidth !== undefined), 'strokeWidth', 'size')
     }
 
     const mergedSize = computed(
