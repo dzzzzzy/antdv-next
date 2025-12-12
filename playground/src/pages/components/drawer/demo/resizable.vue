@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
 import type { DrawerProps, RadioChangeEvent } from 'antdv-next'
+import { shallowRef } from 'vue'
 
 const open = shallowRef(false)
 const placement = shallowRef<DrawerProps['placement']>('right')
