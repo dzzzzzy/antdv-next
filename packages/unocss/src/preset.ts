@@ -180,8 +180,8 @@ export function presetAntd(options: AntdPresetOptions = {}) {
         // 2. 自定义规则 (基于前缀需求)
         rules: [
           // --- 颜色类 ---
-          // ${prefix}-color-primary -> color: var(--${antPrefix}-color-primary)
-          [new RegExp(`^${prefix}-color-(.+)$`), ([_, c], { theme }) => {
+          // ${prefix}-color-primary 或 ${prefix}-c-primary -> color: var(--${antPrefix}-color-primary)
+          [new RegExp(`^${prefix}-(?:color|c)-(.+)$`), ([_, c], { theme }) => {
             const color = (theme.colors as any)?.[c!]
             if (color)
               return { color }
@@ -194,8 +194,8 @@ export function presetAntd(options: AntdPresetOptions = {}) {
               return { 'background-color': color }
           }],
 
-          // ${prefix}-border-primary -> border-color: ...
-          [new RegExp(`^${prefix}-border-(.+)$`), ([_, c], { theme }) => {
+          // ${prefix}-border-primary 或 ${prefix}-b-primary -> border-color: ...
+          [new RegExp(`^${prefix}-(?:border|b)-(.+)$`), ([_, c], { theme }) => {
             const color = (theme.colors as any)?.[c!]
             if (color)
               return { 'border-color': color }
@@ -248,8 +248,10 @@ export function presetAntd(options: AntdPresetOptions = {}) {
           templates: [
             // 颜色类
             `${prefix}-color-$colors`,
+            `${prefix}-c-$colors`,
             `${prefix}-bg-$colors`,
             `${prefix}-border-$colors`,
+            `${prefix}-b-$colors`,
 
             // Margin 类
             `${prefix}-m-$spacing`,
