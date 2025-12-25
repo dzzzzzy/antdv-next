@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+显示切换箭头。
+</docs>
+
+<docs lang="en-US">
+Show the arrows for switching.
+</docs>
+
 <template>
   <a-carousel arrows :infinite="false">
     <div>

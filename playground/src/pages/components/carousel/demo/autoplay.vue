@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+定时切换下一张。
+</docs>
+
+<docs lang="en-US">
+Timing of scrolling to the next card/picture.
+</docs>
+
 <template>
   <a-carousel autoplay>
     <div>

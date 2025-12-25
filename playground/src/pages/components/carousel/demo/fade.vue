@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+切换效果为渐显。
+</docs>
+
+<docs lang="en-US">
+Slides use fade for transition.
+</docs>
+
 <template>
   <a-carousel effect="fade">
     <div>

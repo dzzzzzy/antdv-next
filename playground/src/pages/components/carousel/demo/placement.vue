@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+位置有 4 个方向。
+</docs>
+
+<docs lang="en-US">
+There are 4 position options available.
+</docs>
+
 <script setup lang="ts">
 import type { CarouselProps } from 'antdv-next'
 import { ref } from 'vue'

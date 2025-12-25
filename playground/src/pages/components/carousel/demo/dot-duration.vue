@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+展示指示点的进度。
+</docs>
+
+<docs lang="en-US">
+Show progress of dots.
+</docs>
+
 <template>
   <a-carousel :autoplay="{ dotDuration: true }" :autoplay-speed="5000">
     <div>

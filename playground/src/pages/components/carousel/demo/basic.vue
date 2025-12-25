@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+最简单的用法。
+</docs>
+
+<docs lang="en-US">
+Basic usage.
+</docs>
+
 <script setup lang="ts">
 function onChange(currentSlide: number) {
   console.log('current slide is', currentSlide)

@@ -80,11 +80,10 @@ interface ArrowType extends
 }
 
 const ArrowButton = defineComponent<ArrowType>(
-  (props, { slots }) => {
+  (_, { slots, attrs }) => {
     return () => {
-      const rest = omit(props, ['currentSlide', 'slideCount'])
       return (
-        <button type="button" {...rest}>
+        <button type="button" {...attrs}>
           {slots?.default?.()}
         </button>
       )
@@ -213,9 +212,13 @@ const Carousel = defineComponent<
         vertical: mergedVertical.value,
         className: clsx(customClassName, contextClassName.value),
         style: { ...contextStyle.value, ...style },
+        autoplay: !!autoplay,
         ...otherProps,
       }
 
+      if (newProps.effect === 'fade') {
+        newProps.fade = true
+      }
       const className = clsx(
         prefixCls.value,
         {
