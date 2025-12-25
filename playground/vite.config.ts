@@ -8,6 +8,7 @@ import inspect from 'vite-plugin-inspect'
 
 import { tsxResolveTypes } from 'vite-plugin-tsx-resolve-types'
 import { mdPlugin } from './plugins/markdown'
+import { postcssIsolateStyles } from './plugins/markdown/isolateStyles.ts'
 
 const baseUrl = fileURLToPath(new URL('.', import.meta.url))
 // https://vite.dev/config/
@@ -60,5 +61,12 @@ export default defineConfig({
         replacement: '/src',
       },
     ],
+  },
+  css: {
+    postcss: {
+      plugins: [
+        postcssIsolateStyles(),
+      ],
+    },
   },
 })

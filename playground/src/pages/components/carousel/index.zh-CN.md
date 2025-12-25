@@ -15,12 +15,14 @@ demo:
 
 ## 代码演示 {#examples}
 
-<demo src="./demo/basic.vue">基本</demo>
-<demo src="./demo/placement.vue">位置</demo>
-<demo src="./demo/autoplay.vue">自动切换</demo>
-<demo src="./demo/fade.vue">渐显</demo>
-<demo src="./demo/arrows.vue">切换箭头</demo>
-<demo src="./demo/dot-duration.vue">进度条</demo>
+<demo-group>
+  <demo src="./demo/basic.vue">基本</demo>
+  <demo src="./demo/placement.vue">位置</demo>
+  <demo src="./demo/autoplay.vue">自动切换</demo>
+  <demo src="./demo/fade.vue">渐显</demo>
+  <demo src="./demo/arrows.vue">切换箭头</demo>
+  <demo src="./demo/dot-duration.vue">进度条</demo>
+</demo-group>
 
 ## API
 

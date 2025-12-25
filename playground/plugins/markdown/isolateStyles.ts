@@ -17,7 +17,6 @@ export function postcssIsolateStyles({
   return /* prettier-ignore */ {
     postcssPlugin: 'postcss-isolate-styles',
     Once(root) {
-      console.log('sds')
       const file = root.source?.input.file
       if (file && includeFiles?.length && !includeFiles.some(re => re.test(file)))
         return

@@ -13,12 +13,14 @@ demo:
 
 ## Examples
 
-<demo src="./demo/basic.tsx">Basic</demo>
-<demo src="./demo/placement.tsx">Position</demo>
-<demo src="./demo/autoplay.tsx">Scroll automatically</demo>
-<demo src="./demo/fade.tsx">Fade in</demo>
-<demo src="./demo/arrows.tsx" version="5.17.0">Arrows for switching</demo>
-<demo src="./demo/dot-duration.tsx" version="5.24.0">Progress of dots</demo>
-<demo src="./demo/component-token.tsx" debug>Component Token</demo>
+<demo-group>
+  <demo src="./demo/basic.vue">Basic</demo>
+  <demo src="./demo/placement.vue">Position</demo>
+  <demo src="./demo/autoplay.vue">Scroll automatically</demo>
+  <demo src="./demo/fade.vue">Fade in</demo>
+  <demo src="./demo/arrows.vue" >Arrows for switching</demo>
+  <demo src="./demo/dot-duration.vue" >Progress of dots</demo>
+  <demo src="./demo/component-token.vue" debug>Component Token</demo>
+</demo-group>
 
 ## API

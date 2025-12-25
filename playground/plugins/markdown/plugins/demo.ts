@@ -14,7 +14,7 @@ function checkWrapper(content: string, wrapper = 'demo'): boolean {
   return REGEX_CHECK.test(content)
 }
 
-export function replaceSrcPath(content: string, id: string, root: string, wrapper = 'demo', whenToUse?: MarkdownItHeader) {
+export function replaceSrcPath(content: string, id: string, root: string, wrapper = 'demo', examples?: MarkdownItHeader) {
   // const REGEX_TAG = new RegExp(`(<${wrapper}\\b[^>]*>)([\\s\\S]*?)<\\/${wrapper}>`, 'gi')
   const REGEX_TAG = new RegExp(`(<${wrapper}(?!-)\\b[^>]*>)([\\s\\S]*?)<\\/${wrapper}>`, 'gi')
   return content.replace(REGEX_TAG, (tagMatch, _, titleContent) => {
@@ -32,10 +32,10 @@ export function replaceSrcPath(content: string, id: string, root: string, wrappe
 
       const newSrc = relative.startsWith('/') ? relative : `/${relative}`
       // 如果存在 when-to-use，则在路径后添加查询参数
-      if (whenToUse) {
+      if (examples) {
         const slug = componentDemoPath.replace(/\//g, '-').replace('.vue', '')
         const title = titleContent
-        const level = whenToUse.level + 1
+        const level = examples.level + 1
         const link = `#${slug}`
         const item = {
           level,
@@ -44,11 +44,11 @@ export function replaceSrcPath(content: string, id: string, root: string, wrappe
           link,
           children: [],
         }
-        if (whenToUse.children) {
-          whenToUse.children.push(item)
+        if (examples.children) {
+          examples.children.push(item)
         }
         else {
-          whenToUse.children = [item]
+          examples.children = [item]
         }
       }
 
@@ -65,18 +65,18 @@ export function demoPlugin(md: MarkdownIt, config: { root?: string } = {}) {
     const root = config.root ?? process.cwd()
     const currentId = env.id || ''
     const headers = env.headers
-    const whenToUse = headers?.find(item => item.slug === 'examples')
+    const examples = headers?.find(item => item.slug === 'examples')
     // 遍历所有 token
     for (const token of tokens) {
       // 1. 处理块级 HTML (html_block)
       if (token.type === 'html_block' && checkWrapper(token.content)) {
-        token.content = replaceSrcPath(token.content, currentId, root, undefined, whenToUse)
+        token.content = replaceSrcPath(token.content, currentId, root, undefined, examples)
       }
 
       else if (token.type === 'inline' && token.children) {
         for (const child of token.children) {
           if (child.type === 'html_inline' && checkWrapper(child.content)) {
-            child.content = replaceSrcPath(child.content, currentId, root, undefined, whenToUse)
+            child.content = replaceSrcPath(child.content, currentId, root, undefined, examples)
           }
         }
       }

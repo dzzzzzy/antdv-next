@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import type { MenuEmits } from 'antdv-next'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 import { useDocPage } from '@/composables/doc-page'
 import { useMobile } from '@/composables/mobile'
 import { useAppStore } from '@/stores/app'
@@ -8,12 +10,35 @@ const { isMobile } = useMobile()
 const appStore = useAppStore()
 const { siderMenus, siderKey, siderOpenKeys } = storeToRefs(appStore)
 const { anchorItems } = useDocPage()
+const router = useRouter()
+const handleChangeMenu: MenuEmits['click'] = (info) => {
+  const key = info.key
+  const locale = appStore.locale
+  if (key) {
+    if (locale === 'zh-CN') {
+      router.push({
+        path: `${key}-cn`,
+      })
+    }
+    else {
+      router.push({
+        path: key,
+      })
+    }
+  }
+}
 </script>
 
 <template>
   <main class="ant-doc-main mt-xl flex">
     <a-col v-if="!isMobile" class="ant-doc-main-sider" :xxl="4" :xl="5" :lg="6" :md="6" :sm="24" :xs="24">
-      <a-menu class="ant-doc-main-sider-menu" :items="siderMenus" :selected-keys="siderKey" :open-keys="siderOpenKeys" />
+      <a-menu
+        class="ant-doc-main-sider-menu"
+        :items="siderMenus"
+        :selected-keys="siderKey"
+        :open-keys="siderOpenKeys"
+        @click="handleChangeMenu"
+      />
     </a-col>
     <a-col :xxl="20" :xl="19" :lg="18" :md="18" :sm="24" :xs="24">
       <section class="ant-doc-main-section">
