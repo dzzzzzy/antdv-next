@@ -11,6 +11,7 @@ import type { BreadcrumbProps } from '../breadcrumb/Breadcrumb.tsx'
 import type { ButtonProps } from '../button'
 import type { CardProps } from '../card/Card.tsx'
 import type { CardMetaProps } from '../card/CardMeta.tsx'
+import type { CascaderProps } from '../cascader'
 import type { CheckboxProps } from '../checkbox'
 import type { CollapseProps } from '../collapse'
 import type { DescriptionsProps } from '../descriptions'
@@ -316,6 +317,9 @@ export type TabsConfig = ComponentStyleConfig
 export type SelectConfig = ComponentStyleConfig
   & Pick<SelectProps, 'showSearch' | 'variant' | 'classes' | 'styles'>
 
+export type CascaderConfig = ComponentStyleConfig
+  & Pick<CascaderProps, 'variant' | 'classes' | 'styles'>
+
 export type CardMetaConfig = ComponentStyleConfig & Pick<CardMetaProps, 'classes' | 'styles'>
 
 export type CardConfig = ComponentStyleConfig
@@ -373,7 +377,7 @@ export interface ConfigComponentProps {
   drawer?: DrawerConfig
   calendar?: ComponentStyleConfig
   carousel?: ComponentStyleConfig
-  // cascader?: CascaderConfig;
+  cascader?: CascaderConfig
   treeSelect?: TreeSelectConfig
   collapse?: CollapseConfig
   floatButton?: FloatButtonConfig

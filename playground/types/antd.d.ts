@@ -103,5 +103,6 @@ declare module 'vue' {
     ATransfer: typeof import('antdv-next')['Transfer']
     AMentions: typeof import('antdv-next')['Mentions']
     ACarousel: typeof import('antdv-next')['Carousel']
+    ACascader: typeof import('antdv-next')['Cascader']
   }
 }

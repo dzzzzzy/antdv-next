@@ -6,6 +6,9 @@ export function setupRouterGuard(router: Router) {
     (to) => {
       // switch to CN & US
       const appStore = useAppStore()
+      if (to.path.startsWith('/~demos')) {
+        return true
+      }
       const locale = appStore.locale
       if (locale === 'zh-CN' && !to.path.endsWith('-cn')) {
         let path = to.path

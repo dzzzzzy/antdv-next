@@ -12,7 +12,7 @@ type VariantComponents = keyof Pick<
   | 'textArea'
   | 'mentions'
   | 'select'
-  // | 'cascader'
+  | 'cascader'
   | 'treeSelect'
   // | 'datePicker'
   // | 'timePicker'

@@ -7,6 +7,7 @@ import type {
   CardConfig,
   CollapseConfig,
   ComponentStyleConfig,
+  CascaderConfig,
   CSPConfig,
   DirectionType,
   EmptyConfig,
@@ -86,7 +87,7 @@ export interface ConfigProviderProps {
   button?: ButtonConfig
   calendar?: ComponentStyleConfig
   carousel?: ComponentStyleConfig
-  // cascader?: CascaderConfig;
+  cascader?: CascaderConfig
   treeSelect?: TreeSelectConfig
   collapse?: CollapseConfig
   divider?: ComponentStyleConfig
