@@ -52,7 +52,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
   <demo src="./demo/row-selection-custom.vue">Custom Selection</demo>
   <demo src="./demo/row-selection-and-operation.vue">Selection Operations</demo>
   <demo src="./demo/reset-filter.vue">Reset Filter</demo>
-  <demo src="./demo/measure-row-render.vue">Measure Row Render</demo>
   <demo src="./demo/virtual-list.vue">Virtual List</demo>
   <demo src="./demo/jsx.vue">Render Functions</demo>
   <demo src="./demo/style-class.vue">Style & Class</demo>

@@ -16,7 +16,7 @@ const pageInfo = inject<DocPage | null>('__pageInfo__', null)
 // 基础配置
 const gap = 16
 const minColumnWidth = 360 // 每列最小宽度，可根据需求调整
-const dynamicCols = ref(2)
+const dynamicCols = ref(1)
 
 // 计算最终列数：如果 Props 有值则固定，否则动态计算
 const finalCols = computed(() => {
@@ -34,7 +34,7 @@ function updateColumns() {
   const maxPossibleColumns = Math.floor((containerWidth + gap) / (minColumnWidth + gap))
 
   // 读取 frontmatter 中的配置作为上限（默认 2）
-  const maxLimit = pageInfo?.frontmatter?.demo?.cols || 2
+  const maxLimit = pageInfo?.frontmatter?.demo?.cols || 1
 
   dynamicCols.value = Math.max(1, Math.min(maxPossibleColumns, maxLimit))
 }
