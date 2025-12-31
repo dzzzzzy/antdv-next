@@ -182,10 +182,14 @@ const InternalTag = defineComponent<
       // ====================== Render ======================
       const isNeedWave = (children && children.type === 'a') || typeof props.onClick === 'function'
       const iconNode = getSlotPropsFnRun(slots, props, 'icon')
-      const iconNodes = createVNode(iconNode, {
-        class: mergedClassNames.value?.icon,
-        style: mergedStyles.value?.icon,
-      })
+      let iconNodes = iconNode
+      if (iconNode) {
+        iconNodes = createVNode(iconNode, {
+          class: mergedClassNames.value?.icon,
+          style: mergedStyles.value?.icon,
+        })
+      }
+
       const kids = iconNodes
         ? (
             <>
