@@ -5,13 +5,16 @@
   "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "turbo dev --filter playground",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "ci:publish": "pnpm publish -r --access=public",
+    "bump": "pnpm changeset version"
   },
   "dependencies": {
     "vue": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
+    "@changesets/cli": "^2.29.8",
     "@types/jsdom": "catalog:",
     "@types/node": "catalog:",
     "@v-c/trigger": "^1.0.1",
