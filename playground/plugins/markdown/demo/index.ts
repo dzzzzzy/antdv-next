@@ -63,6 +63,10 @@ export function demoPlugin(): PluginOption {
       if (id.startsWith('\0') && id.includes(DEMO_SUFFIX)) {
         const virtualId = id.slice(1)
         const [filePath] = virtualId.split('?')
+        
+        // 建立文件依赖关系，确保源文件变化时虚拟模块会被重新加载
+        this.addWatchFile(filePath)
+        
         const code = await fs.readFile(filePath, 'utf-8')
         const { descriptor } = parse(code, {
           filename: filePath,
@@ -104,9 +108,14 @@ export function demoPlugin(): PluginOption {
         const normalizedFile = normalizePath(ctx.file)
         const server = ctx.server
         const virtualFileName = `${normalizedFile}?${DEMO_SUFFIX}`
-        const virtualModule = server.moduleGraph.getModuleById(`\0${virtualFileName}`)
+        const virtualModuleId = `\0${virtualFileName}`
+        const virtualModule = server.moduleGraph.getModuleById(virtualModuleId)
+
         if (virtualModule) {
+          // 使虚拟模块失效，触发客户端重新请求并调用 load 钩子
           server.moduleGraph.invalidateModule(virtualModule)
+          
+          // 将虚拟模块加入更新列表，让 Vite 自动处理 HMR
           return [...ctx.modules, virtualModule]
         }
       }
