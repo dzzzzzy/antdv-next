@@ -45,7 +45,7 @@ const features = [
         </h1>
 
         <p class="mt-8 text-xl leading-relaxed text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-medium">
-          基于 Vue 3 实现的业级组件库
+          基于 Vue 3 实现的企业级组件库
           <span class="block mt-2 text-slate-400 dark:text-slate-500 font-normal italic tracking-wide">
             设计规范采用Ant Design V6.0规范，支持暗黑模式与多主题切换
           </span>
