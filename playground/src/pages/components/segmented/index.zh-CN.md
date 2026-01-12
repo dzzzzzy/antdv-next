@@ -14,9 +14,23 @@ demo:
 
 ## 何时使用 {#when-to-use}
 
+- 用于展示多个选项并允许用户选择其中单个选项；
+- 当切换选中选项时，关联区域的内容会发生变化
+
 ## 示例 {#examples}
 
 <demo-group>
+  <demo src="./demo/basic.vue">基本</demo>
+  <demo src="./demo/vertical.vue">垂直方向</demo>
+  <demo src="./demo/block.vue">block 分段选择器</demo>
+  <demo src="./demo/shape.vue">胶囊形状</demo>
+  <demo src="./demo/custom.vue">自定义渲染</demo>
+  <demo src="./demo/dynamic.vue">动态数据</demo>
+  <demo src="./demo/disabled.vue">不可用</demo>
+  <demo src="./demo/size.vue">三种大小</demo>
+  <demo src="./demo/with-icon.vue">设置图标</demo>
+  <demo src="./demo/icon-only.vue">只设置图标</demo>
+  <demo src="./demo/with-name.vue">配合name使用</demo>
 </demo-group>
 
 ## API

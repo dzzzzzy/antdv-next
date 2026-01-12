@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+垂直方向。
+</docs>
+
+<docs lang="en-US">
+Make it vertical.
+</docs>
+
 <script setup lang="ts">
 import { AppstoreOutlined, BarsOutlined } from '@antdv-next/icons'
 

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+胶囊型的 Segmented。
+</docs>
+
+<docs lang="en-US">
+Round shape of Segmented.
+</docs>
+
 <script setup lang="ts">
 import { MoonOutlined, SunOutlined } from '@antdv-next/icons'
 import { shallowRef } from 'vue'

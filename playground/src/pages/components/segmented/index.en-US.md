@@ -13,9 +13,25 @@ demo:
 
 ## When To Use {#when-to-use}
 
+- When displaying multiple options and user can select a single option;
+- When switching the selected option, the content of the associated area changes.
+
 ## Examples {#examples}
 
 <demo-group>
+
+<demo-group>
+  <demo src="./demo/basic.vue">Basic</demo>
+  <demo src="./demo/vertical.vue">Vertical Direction</demo>
+  <demo src="./demo/block.vue">Block Segmented</demo>
+  <demo src="./demo/shape.vue">Round shape</demo>
+  <demo src="./demo/custom.vue">Custom Render</demo>
+  <demo src="./demo/dynamic.vue">Dynamic</demo>
+  <demo src="./demo/disabled.vue">Disabled</demo>
+  <demo src="./demo/size.vue">Three sizes of Segmented</demo>
+  <demo src="./demo/with-icon.vue">With Icon</demo>
+  <demo src="./demo/icon-only.vue">With Icon only</demo>
+  <demo src="./demo/with-name.vue">With name</demo>
 </demo-group>
 
 ## API
