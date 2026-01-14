@@ -7,6 +7,7 @@ import { setupRouterGuard } from '@/routes/guard'
 import App from './App.vue'
 import CodeDemo from './components/code-demo'
 import ComponentOverview from './components/component-overview/index.vue'
+import ComponentTokenTable from './components/token/component-token-table.vue'
 import 'antdv-next/style/reset.css'
 import 'uno.css'
 import './assets/styles/layout/index.css'
@@ -20,5 +21,6 @@ setupRouterGuard(router)
 app.use(CodeDemo)
 app.component('DocHeading', DocHeading)
 app.component('ComponentOverview', ComponentOverview)
+app.component('ComponentTokenTable', ComponentTokenTable)
 app.use(createPinia())
 app.mount('#app')
