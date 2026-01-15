@@ -109,8 +109,8 @@ catalogs:
       specifier: ^0.0.1
       version: 0.0.1
     '@v-c/input':
-      specifier: ^1.0.0
-      version: 1.0.0
+      specifier: ^1.0.1
+      version: 1.0.1
     '@v-c/input-number':
       specifier: ^1.0.0
       version: 1.0.0
@@ -493,7 +493,7 @@ importers:
         version: 0.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/input':
         specifier: 'catalog:'
-        version: 1.0.0(vue@3.5.25(typescript@5.9.3))
+        version: 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/input-number':
         specifier: 'catalog:'
         version: 1.0.0(vue@3.5.25(typescript@5.9.3))
@@ -2216,8 +2216,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@v-c/input@1.0.0':
-    resolution: {integrity: sha512-EhP5upp823RBQc4agnES0SbV0I85SVSFRqqy8H5RyooZPhIS9I+Hd3MIz9zql4k2k/10eeCleab/mhaAHqNqRw==}
+  '@v-c/input@1.0.1':
+    resolution: {integrity: sha512-uncGCTxkDm3q9/6A9ISscLK0Vj6ZGg1Bf+WWh0Vs8Ep0mG40vNt91dutOb9g0hDJSUbfIP7dVanKPj/9S8MVRw==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -6994,19 +6994,19 @@ snapshots:
 
   '@v-c/input-number@1.0.0(vue@3.5.25(typescript@5.9.3))':
     dependencies:
-      '@v-c/input': 1.0.0(vue@3.5.25(typescript@5.9.3))
+      '@v-c/input': 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/mini-decimal': 1.0.0
       '@v-c/util': 1.0.8(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
 
-  '@v-c/input@1.0.0(vue@3.5.25(typescript@5.9.3))':
+  '@v-c/input@1.0.1(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       '@v-c/util': 1.0.8(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
 
   '@v-c/mentions@0.0.1(vue@3.5.25(typescript@5.9.3))':
     dependencies:
-      '@v-c/input': 1.0.0(vue@3.5.25(typescript@5.9.3))
+      '@v-c/input': 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/menu': 1.0.5(vue@3.5.25(typescript@5.9.3))
       '@v-c/textarea': 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/trigger': 1.0.2(vue@3.5.25(typescript@5.9.3))
@@ -7145,7 +7145,7 @@ snapshots:
 
   '@v-c/textarea@1.0.1(vue@3.5.25(typescript@5.9.3))':
     dependencies:
-      '@v-c/input': 1.0.0(vue@3.5.25(typescript@5.9.3))
+      '@v-c/input': 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/resize-observer': 1.0.3(vue@3.5.25(typescript@5.9.3))
       '@v-c/util': 1.0.8(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)

@@ -37,7 +37,7 @@ catalog:
   '@v-c/drawer': ^0.0.3
   '@v-c/dropdown': ^1.0.1
   '@v-c/image': ^0.0.1
-  '@v-c/input': ^1.0.0
+  '@v-c/input': ^1.0.1
   '@v-c/input-number': ^1.0.0
   '@v-c/mentions': ^0.0.1
   '@v-c/menu': ^1.0.5
