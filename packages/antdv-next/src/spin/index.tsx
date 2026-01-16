@@ -92,7 +92,7 @@ const Spin = defineComponent<
     const mergedPercent = usePercent(spinning, computed(() => props.percent))
 
     watch(
-      [() => props.delay, () => props.fullscreen],
+      [() => props.delay, () => props.spinning],
       (_, _p, onCleanup) => {
         if (props.spinning) {
           const showSpinning = debounce(
@@ -105,6 +105,7 @@ const Spin = defineComponent<
           onCleanup(() => {
             showSpinning?.cancel?.()
           })
+          return
         }
         spinning.value = false
       },
