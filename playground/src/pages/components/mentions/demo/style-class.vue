@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-通过 `classNames` 和 `styles` 传入对象/函数可以自定义 Mentions 的[语义化结构](#semantic-dom)样式，例如设置文本框可缩放。
+通过 `classes` 和 `styles` 传入对象/函数可以自定义 Mentions 的[语义化结构](#semantic-dom)样式，例如设置文本框可缩放。
 </docs>
 
 <docs lang="en-US">
-You can customize the [semantic dom](#semantic-dom) style of Mentions by passing objects/functions through `classNames` and `styles`. For example, set the textarea to be resizable.
+You can customize the [semantic dom](#semantic-dom) style of Mentions by passing objects/functions through `classes` and `styles`. For example, set the textarea to be resizable.
 </docs>
 
 <script setup lang="ts">
