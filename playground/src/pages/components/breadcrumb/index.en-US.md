@@ -33,36 +33,52 @@ demo:
 
 Common props ref：[Common props](/docs/vue/common-props)
 
-### Property {#property}
+### Props
 
-#### Breadcrumb
-
-| Property | Description | Type                                                                                                                                         | Default | Version |
-| --- | --- |----------------------------------------------------------------------------------------------------------------------------------------------| --- | --- |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), string&gt;               | - | - |
-| dropdownIcon | Custom dropdown icon | VueNode                                                                                                                                      | `<DownOutlined />` | 6.2.0 |
-| itemRender | Custom item renderer, work with vue-router | (route, params, routes, paths) =&gt; VueNode                                                                                                 | - | - |
-| params | Routing parameters | object                                                                                                                                       | - | - |
-| items | The routing stack information of router | [ItemType\[\]](#itemtype)                                                                                                                    | - | 5.3.0 |
-| separator | Custom separator | VueNode                                                                                                                                      | `/` | - |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| dropdownIcon | Custom dropdown icon | VueNode | `<DownOutlined />` | - |
+| itemRender | Custom item renderer, work with vue-router | (route, params, routes, paths) =&gt; VueNode | - | - |
+| params | Routing parameters | object | - | - |
+| items | The routing stack information of router | [ItemType\[\]](#itemtype) | - | - |
+| separator | Custom separator | VueNode | `/` | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
-#### ItemType {#itemtype}
+### Events
+
+| Event | Description | Type | Version |
+| --- | --- | --- | --- |
+| clickItem | Triggered when clicking a breadcrumb item | (item: ItemType, event: MouseEvent) =&gt; void | - |
+
+### Slots
+
+| Slot | Description | Type | Version |
+| --- | --- | --- | --- |
+| itemRender | Custom item renderer, work with vue-router | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
+| titleRender | Custom title renderer | (params: \{ item: ItemType, index: number \}) =&gt; any | - |
+| separator | Custom separator | () =&gt; any | - |
+| menuLabelRender | Custom menu label renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
+| menuExtraRender | Custom menu extra content renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
+
+## Types {#types}
+
+### ItemType {#itemtype}
 
 > type ItemType = Omit&lt;RouteItemType, 'title' | 'path'&gt; | SeparatorType
 
-#### RouteItemType {#routeitemtype}
+### RouteItemType {#routeitemtype}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | dropdownProps | The dropdown props | [Dropdown](/components/dropdown) | - | - |
 | href | Target of hyperlink. Can not work with path | string | - | - |
 | path | Connected path. Each path will connect with prev one. Can not work with href | string | - | - |
-| menu | The menu props | [MenuProps](/components/menu#api) | - | 4.24.0 |
+| menu | The menu props | [MenuProps](/components/menu#api) | - | - |
 | onClick | Set the handler to handle click event | (e: MouseEvent) =&gt; void | - | - |
-| title | item name | VueNode | - | 5.3.0 |
+| title | item name | VueNode | - | - |
 
-#### SeparatorType {#separatortype}
+### SeparatorType {#separatortype}
 
 ```ts
 const item = {
@@ -73,26 +89,10 @@ const item = {
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| type | Mark as separator | `separator` | - | 5.3.0 |
-| separator | Custom separator | VueNode | `/` | 5.3.0 |
+| type | Mark as separator | `separator` | - | - |
+| separator | Custom separator | VueNode | `/` | - |
 
-### Events {#events}
-
-| Event | Description | Type | Version |
-| --- | --- | --- | --- |
-| clickItem | Triggered when clicking a breadcrumb item | (item: ItemType, event: MouseEvent) =&gt; void | - |
-
-### Slots {#slots}
-
-| Slot | Description | Type                                                                                | Version |
-| --- | --- |-------------------------------------------------------------------------------------| --- |
-| itemRender | Custom item renderer, work with vue-router | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
-| titleRender | Custom title renderer | (params: \{ item: ItemType, index: number \}) =&gt; any                             | - |
-| separator | Custom separator | () =&gt; any                                                                        | - |
-| menuLabelRender | Custom menu label renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
-| menuExtraRender | Custom menu extra content renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
-
-### Use with vue-router {#use-with-vue-router}
+## Use with vue-router {#use-with-vue-router}
 
 The link of Breadcrumb item targets `#` by default, you can use `itemRender` slot to make a vue-router Link.
 
