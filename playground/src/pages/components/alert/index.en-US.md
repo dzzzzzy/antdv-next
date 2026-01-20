@@ -37,7 +37,7 @@ group:
 
 ## API
 
-### Property {#property}
+### Props {#props}
 
 Common props ref：[Common props](/docs/vue/common-props)
 

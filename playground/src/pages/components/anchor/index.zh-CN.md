@@ -35,26 +35,41 @@ group:
 
 通用属性参考：[通用属性](/docs/vue/common-props)
 
-### 属性 {#property}
+### Anchor
 
-#### Anchor
+#### 属性 {#anchor-props}
 
-| 属性 | 说明 | 类型                                                                                                                                           | 默认值 | 版本 |
-| --- | --- |----------------------------------------------------------------------------------------------------------------------------------------------| --- | --- |
-| affix | 固定模式 | boolean \| Omit&lt;AffixProps, 'offsetTop' \| 'target' \| 'children'&gt;                                                                     | true | |
-| bounds | 锚点区域边界 | number                                                                                                                                       | 5 | - |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt;               | - | - |
-| getContainer | 指定滚动的容器 | () =&gt; HTMLElement                                                                                                                         | () =&gt; window | - |
-| getCurrentAnchor | 自定义高亮的锚点 | (activeLink: string) =&gt; string                                                                                                            | - | - |
-| offsetTop | 距离窗口顶部达到指定偏移量后触发 | number                                                                                                                                       | - | - |
-| showInkInFixed | `affix=&#123;false&#125;` 时是否显示小方块 | boolean                                                                                                                                      | false | - |
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| affix | 固定模式 | boolean \| Omit&lt;AffixProps, 'offsetTop' \| 'target' \| 'children'&gt; | true | |
+| bounds | 锚点区域边界 | number | 5 | - |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| getContainer | 指定滚动的容器 | () =&gt; HTMLElement | () =&gt; window | - |
+| getCurrentAnchor | 自定义高亮的锚点 | (activeLink: string) =&gt; string | - | - |
+| offsetTop | 距离窗口顶部达到指定偏移量后触发 | number | - | - |
+| showInkInFixed | `affix=&#123;false&#125;` 时是否显示小方块 | boolean | false | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
-| targetOffset | 锚点滚动偏移量，默认与 offsetTop 相同，[例子](#anchor-demo-targetoffset) | number                                                                                                                                       | - | - |
-| items | 数据化配置选项内容，支持通过 children 嵌套 | &#123; key, href, title, target, children &#125;\[] [具体见](#anchoritem)                                                                               | - | |
-| direction | 设置导航方向 | `vertical` \| `horizontal`                                                                                                                   | `vertical` | |
-| replace | 替换浏览器历史记录中项目的 href 而不是推送它 | boolean                                                                                                                                      | false |  |
+| targetOffset | 锚点滚动偏移量，默认与 offsetTop 相同，[例子](#anchor-demo-targetoffset) | number | - | - |
+| items | 数据化配置选项内容，支持通过 children 嵌套 | &#123; key, href, title, target, children &#125;\[] [具体见](#anchoritem) | - | |
+| direction | 设置导航方向 | `vertical` \| `horizontal` | `vertical` | |
+| replace | 替换浏览器历史记录中项目的 href 而不是推送它 | boolean | false |  |
 
-#### AnchorItem
+#### 事件 {#anchor-events}
+
+| 事件 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| click | `click` 事件的 handler | (e: MouseEvent, link: &#123; title: VueNode, href: string &#125;) =&gt; void | - |
+| change | 监听锚点链接改变 | (currentActiveLink: string) =&gt; void | - |
+
+#### 插槽 {#anchor-slots}
+
+| 插槽 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| item | 自定义锚点项的渲染 | (item: AnchorItem) =&gt; any | - |
+
+## 类型 {#types}
+
+### AnchorItem
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -63,9 +78,9 @@ group:
 | target | 该属性指定在何处显示链接的资源 | string | - | - |
 | title | 文字内容 | VueNode | - | - |
 | children | 嵌套的 Anchor Link，`注意：水平方向该属性不支持` | [AnchorItem](#anchoritem)\[] | - | - |
-| replace | 替换浏览器历史记录中的项目 href 而不是推送它 | boolean | false |  |
+| replace | 替换浏览器历史记录中的项目 href 而不是推送它 | boolean | false | |
 
-#### Link Props
+#### AnchorItemLink
 
 建议使用 items 形式。
 
@@ -74,19 +89,6 @@ group:
 | href | 锚点链接 | string | - | - |
 | target | 该属性指定在何处显示链接的资源 | string | - | - |
 | title | 文字内容 | VueNode | - | - |
-
-### 事件 {#events}
-
-| 事件 | 说明 | 类型                                                                   | 版本 |
-| --- | --- |----------------------------------------------------------------------| --- |
-| click | `click` 事件的 handler | (e: MouseEvent, link: &#123; title: VueNode, href: string &#125;) =&gt; void | - |
-| change | 监听锚点链接改变 | (currentActiveLink: string) =&gt; void                               | - |
-
-### 插槽 {#slots}
-
-| 插槽 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| item | 自定义锚点项的渲染 | (item: AnchorItem) =&gt; any | - |
 
 ## 语义化 DOM {#semantic-dom}
 

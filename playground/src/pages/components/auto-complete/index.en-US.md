@@ -40,7 +40,7 @@ The differences with Select are:
 
 ## API
 
-### Property {#property}
+### Props
 
 Common props ref：[Common props](/docs/vue/common-props)
 
@@ -66,7 +66,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | variant | Variants of input | `outlined` \| `borderless` \| `filled` \| `underlined` | `outlined` | - |
 | virtual | Disable virtual scroll when set to false | boolean | true | - |
 
-### Events {#events}
+### Events
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
@@ -80,13 +80,15 @@ Common props ref：[Common props](/docs/vue/common-props)
 | search | Called when searching items | (value: string) =&gt; void | - |
 | select | Called when an option is selected, the params are option's value (or key) and option instance | (value: string, option: Option) =&gt; void | - |
 
-### Slots {#slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
 | default | Customize input element | () =&gt; VueNode | - |
 
-### showSearch {#showsearch}
+## Types
+
+### showSearch
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

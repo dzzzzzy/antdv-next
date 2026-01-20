@@ -29,7 +29,7 @@ Please note that Affix should not cover other content on the page, especially wh
 
 ## API
 
-### Property
+### Props
 
 Common props ref：[Common props](/docs/vue/common-props)
 

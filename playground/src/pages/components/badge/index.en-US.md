@@ -33,7 +33,7 @@ Badge normally appears in proximity to notifications or user avatars with eye-ca
 
 ## API
 
-### Property {#property}
+### Props {#props}
 
 Common props ref：[Common props](/docs/vue/common-props)
 
