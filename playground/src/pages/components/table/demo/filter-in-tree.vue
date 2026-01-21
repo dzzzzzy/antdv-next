@@ -1,9 +1,11 @@
 <docs lang="zh-CN">
-树形筛选。
+可以使用 `filterMode` 来修改筛选菜单的 UI，可选值有 `menu`（默认）和 `tree`。
 </docs>
 
 <docs lang="en-US">
-Tree filter menu.
+You can use `filterMode` to change default filter interface, options: `menu`(default) and `tree`.
+
+> `filterSearch` is used for making filter dropdown items searchable.
 </docs>
 
 <script setup lang="ts">

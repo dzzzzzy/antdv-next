@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-整行编辑。
+带行编辑功能的表格。
 </docs>
 
 <docs lang="en-US">
-Editable rows.
+Table with editable rows.
 </docs>
 
 <script setup lang="ts">

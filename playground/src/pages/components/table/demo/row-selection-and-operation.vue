@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-行选择与批量操作。
+选择后进行操作，完成后清空选择，通过 `rowSelection.selectedRowKeys` 来控制选中项。
 </docs>
 
 <docs lang="en-US">
-Row selection with operations.
+To perform operations and clear selections after selecting some rows, use `rowSelection.selectedRowKeys` to control selected rows.
 </docs>
 
 <script setup lang="ts">

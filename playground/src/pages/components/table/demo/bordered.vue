@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-带边框的表格。
+添加表格边框线，页头和页脚。
 </docs>
 
 <docs lang="en-US">
-Table with borders.
+Add border, title and footer for table.
 </docs>
 
 <script setup lang="ts">

@@ -1,9 +1,16 @@
 <docs lang="zh-CN">
-动态配置表格属性。
+选择不同配置组合查看效果。
 </docs>
 
 <docs lang="en-US">
-Dynamic table settings.
+Select different settings to see the result.
+
+<style>
+.table-demo-control-bar .ant-form-item {
+  margin-inline-end: 16px !important;
+  margin-bottom: 8px !important;
+}
+</style>
 </docs>
 
 <script setup lang="ts">

@@ -3,7 +3,7 @@
 </docs>
 
 <docs lang="en-US">
-Custom empty content.
+Custom empty status.
 </docs>
 
 <script setup lang="ts">

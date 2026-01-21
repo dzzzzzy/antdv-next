@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-单元格内编辑。
+带单元格编辑功能的表格。当配合 `shouldCellUpdate` 使用时请注意[闭包问题](https://github.com/ant-design/ant-design/issues/29243)。
 </docs>
 
 <docs lang="en-US">
-Editable cells.
+Table with editable cells. When work with `shouldCellUpdate`, please take care of [closure](https://github.com/ant-design/ant-design/issues/29243).
 </docs>
 
 <script setup lang="ts">

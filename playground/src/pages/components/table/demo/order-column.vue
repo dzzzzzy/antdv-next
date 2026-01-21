@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-自定义展开列与选择列顺序。
+你可以通过 `Table.EXPAND_COLUMN` 和 `Table.SELECTION_COLUMN` 来控制选择和展开列的顺序。
 </docs>
 
 <docs lang="en-US">
-Order expand and selection columns.
+You can control the order of the expand and select columns by using `Table.EXPAND_COLUMN` and `Table.SELECTION_COLUMN`.
 </docs>
 
 <script setup lang="ts">

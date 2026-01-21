@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-拖拽行排序。
+使用自定义元素，我们可以集成 [dnd-kit](https://github.com/clauderic/dnd-kit) 来实现拖拽排序。
 </docs>
 
 <docs lang="en-US">
-Drag rows to reorder.
+By using `components`, we can integrate table with [dnd-kit](https://github.com/clauderic/dnd-kit) to implement drag sorting function.
 </docs>
 
 <script setup lang="ts">

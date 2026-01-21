@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-树形数据省略。
+https://github.com/ant-design/ant-design/issues/36583
 </docs>
 
 <docs lang="en-US">
-Tree data with ellipsis.
+https://github.com/ant-design/ant-design/issues/36583
 </docs>
 
 <script setup lang="ts">

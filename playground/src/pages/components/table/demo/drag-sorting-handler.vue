@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-通过拖拽手柄排序行。
+使用 [dnd-kit](https://github.com/clauderic/dnd-kit) 来实现一个拖拽操作列。
 </docs>
 
 <docs lang="en-US">
-Reorder rows with a drag handle.
+Alternatively you can implement drag sorting with handler using [dnd-kit](https://github.com/clauderic/dnd-kit).
 </docs>
 
 <script setup lang="ts">

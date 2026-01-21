@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-动态显示/隐藏列。
+使用 `hidden` 隐藏列。
 </docs>
 
 <docs lang="en-US">
-Show or hide columns.
+Hide columns with `hidden`.
 </docs>
 
 <script setup lang="ts">

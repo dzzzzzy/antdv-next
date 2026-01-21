@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-筛选面板搜索。
+`filterSearch` 用于开启筛选项的搜索，通过 `filterSearch:(input, record) => boolean` 设置自定义筛选方法
 </docs>
 
 <docs lang="en-US">
-Search in filter menu.
+`filterSearch` is used to enable search of filter items, and you can set a custom filter method through `filterSearch:(input, record) => boolean`.
 </docs>
 
 <script setup lang="ts">

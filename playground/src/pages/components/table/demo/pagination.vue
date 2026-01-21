@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-分页。
+表格的分页设置。
 </docs>
 
 <docs lang="en-US">
-Pagination.
+Table pagination settings.
 </docs>
 
 <script setup lang="ts">

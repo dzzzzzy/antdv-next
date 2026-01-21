@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-嵌套表格。
+展示每行数据更详细的信息。
 </docs>
 
 <docs lang="en-US">
-Nested table.
+Showing more detailed info of every row.
 </docs>
 
 <script setup lang="ts">

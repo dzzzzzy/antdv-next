@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-固定列与超宽表格。
+混合固定列，滚动到一定距离进行堆叠，推荐配合 `bordered` 使用。
 </docs>
 
 <docs lang="en-US">
-Fixed columns with wide table.
+Fixed column only when scroll some distance, and scroll to stack other columns. Recommend use with `bordered`.
 </docs>
 
 <script setup lang="ts">

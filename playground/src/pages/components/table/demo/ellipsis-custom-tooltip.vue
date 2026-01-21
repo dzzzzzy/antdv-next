@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-自定义省略提示。
+设置 `column.ellipsis.showTitle` 关闭单元格内容自动省略后默认的 `title` 提示, 使用 `Tooltip` 替代。
 </docs>
 
 <docs lang="en-US">
-Custom tooltip for ellipsis.
+Ellipsis cell content via setting `column.ellipsis.showTitle`, use `Tooltip` instead of the html title attribute.
 </docs>
 
 <script setup lang="ts">

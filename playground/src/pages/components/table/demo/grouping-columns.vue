@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-分组表头。
+`columns[n]` 可以内嵌 `children`，以渲染分组表头。
 </docs>
 
 <docs lang="en-US">
-Grouped columns.
+Group table head with `columns[n].children`.
 </docs>
 
 <script setup lang="ts">

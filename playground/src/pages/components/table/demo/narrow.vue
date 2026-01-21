@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-窄屏表格。
+两种紧凑型的列表，小型列表只用于对话框内。
 </docs>
 
 <docs lang="en-US">
-Narrow table.
+There are two compacted table sizes: `middle` and `small`. The `small` size is used in Modals only.
 </docs>
 
 <script setup lang="ts">

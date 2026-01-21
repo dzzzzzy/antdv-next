@@ -1,9 +1,11 @@
 <docs lang="zh-CN">
-三种尺寸。
+两种紧凑型的列表，小型列表只用于对话框内。
 </docs>
 
 <docs lang="en-US">
-Table sizes.
+There are two compacted table sizes: `middle` and `small`. The `small` size is used in Modals only.
+
+<style>#table-demo-size h4 { margin-bottom: 16px; }</style>
 </docs>
 
 <script setup lang="ts">

@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-自定义选择菜单。
+通过 `rowSelection.selections` 自定义选择项，默认不显示下拉选项，设为 `true` 时显示默认选择项。
 </docs>
 
 <docs lang="en-US">
-Custom selection actions.
+Use `rowSelection.selections` custom selections, default no select dropdown, show default selections via setting to `true`.
 </docs>
 
 <script setup lang="ts">

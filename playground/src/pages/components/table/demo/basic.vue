@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-基础表格。
+简单的表格，最后一列是各种操作。
 </docs>
 
 <docs lang="en-US">
-Basic table.
+Simple table with actions.
 </docs>
 
 <script setup lang="ts">

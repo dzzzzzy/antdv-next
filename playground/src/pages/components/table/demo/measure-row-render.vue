@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-筛选面板常显。
+用 `measureRowRender` 修复 https://github.com/ant-design/ant-design/issues/54906 。
 </docs>
 
 <docs lang="en-US">
-Filter dropdown always open.
+Use `measureRowRender` to fix https://github.com/ant-design/ant-design/issues/54906 .
 </docs>
 
 <script setup lang="ts">
