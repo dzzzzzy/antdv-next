@@ -34,34 +34,55 @@ demo:
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| options | Set children optional | SegmentedOptions | [] | - |
-| rootClass | - | string | - | - |
-| block | Option to fit width to its parent\'s width | boolean | false | - |
-| size | The size of the Segmented. | SizeType | `middle` | - |
-| vertical | Orientation，Simultaneously existing with `orientation`, `orientation` takes priority | boolean | `false` | 5.21.0 |
-| orientation | Orientation | Orientation | `horizontal` | - |
-| classes | Customize class for each semantic structure inside the Segmented component. Supports object or function. | SegmentedClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the Segmented component. Supports object or function. | SegmentedStylesType | - | - |
-| shape | shape of Segmented | 'default' \| 'round' | `default` | 5.24.0 |
-| iconRender | - | (option: SegmentedLabeledOption) =&gt; any | - | - |
-| labelRender | - | (option: SegmentedLabeledOption) =&gt; any | - | - |
+| block | Option to fit width to its parent\'s width | boolean | false |  |
+| classes | Customize class for each semantic structure inside the Segmented component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), string> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), string> | - |  |
+| defaultValue | Default selected value | string \| number |  |  |
+| disabled | Disable all segments | boolean | false |  |
+| options | Set children optional | string\[] \| number\[] \| SegmentedItemType\[] | [] |  |
+| orientation | Orientation | `horizontal` \| `vertical` | `horizontal` |  |
+| size | The size of the Segmented. | `large` \| `middle` \| `small` | `middle` |  |
+| styles | Customize inline style for each semantic structure inside the Segmented component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), CSSProperties> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), CSSProperties> | - |  |
+| vertical | Orientation，Simultaneously existing with `orientation`, `orientation` takes priority | boolean | `false` | - |
+| value | Currently selected value | string \| number |  |  |
+| shape | shape of Segmented | `default` \| `round` | `default` | - |
+| name | The `name` property of all `input[type="radio"]` children. if not set, it will fallback to a randomly generated name | string |  |- |
 
-### Events {#events}
+### Events
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
-| change | The callback function that is triggered when the state changes | (value: RcSegmentedValue) =&gt; void | - |
-| update:value | - | (value: RcSegmentedValue) =&gt; void | - |
+| change | The callback function that is triggered when the state changes  | function(value: string \| number) | - |
 
-### Slots {#slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| iconRender | - | (option: SegmentedLabeledOption) =&gt; any | - |
-| labelRender | - | (option: SegmentedLabeledOption) =&gt; any | - |
+| iconRender | icon render slot | (option: SegmentedLabeledOption) =&gt; any | - |
+| labelRender | label render slot | (option: SegmentedLabeledOption) =&gt; any | - |
+
+## Types
+
+### SegmentedItemType
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| disabled | Disabled state of segmented item | boolean | false |  |
+| class | The additional css class | string | - |  |
+| icon | Display icon for Segmented item | VueNode | - |  |
+| label | Display text for Segmented item | VueNode | - |  |
+| tooltip | tooltip for Segmented item | string \| [TooltipProps](../tooltip#api) | - |  |
+| value | Value for Segmented item | string \| number | - |  |
+
+## Semantic DOM
+
+<!-- <code src="./demo/_semantic.tsx" simplify="true"></code> -->
+
+## Design Token
+
+<ComponentTokenTable component="Segmented"></ComponentTokenTable>

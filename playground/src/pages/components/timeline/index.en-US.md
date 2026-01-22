@@ -13,8 +13,8 @@ demo:
 
 ## When To Use {#when-to-use}
 
-- When a series of information needs to be ordered by time, users can visually see what happened at what time.
-- You are reading this documentation.
+- When a series of information needs to be ordered by time (ascending or descending).
+- When you need a timeline to make a visual connection.
 
 ## Examples {#examples}
 
@@ -31,44 +31,50 @@ demo:
 
 ## API
 
-### Property {#property}
+### Props {#props}
 
 Common props ref：[Common props](/docs/vue/common-props)
 
-#### Timeline
-
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | Record&lt;SemanticDOM, string&gt; | - | - |
+| items | Each node of timeline | TimelineItemProps[] | - | - |
+| mode | By sending `alternate` the timeline will distribute the nodes to the left and right | `left` \| `alternate` \| `right` | - | - |
 | pending | Set the last ghost node's existence or its content. Use `item.loading` instead | VueNode | false | - |
 | pendingDot | Set the dot of the last ghost node when pending is true. Use `item.icon` instead | VueNode | &lt;LoadingOutlined /&gt; | - |
 | reverse | Whether reverse nodes or not | boolean | false | - |
-| mode | By sending `alternate` the timeline will distribute the nodes to the left and right | 'left' \| 'alternate' \| 'right' | `start` | - |
-| items | Each node of timeline | TimelineItemProps[] | - | - |
-| dotRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
-| labelRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
-| contentRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
-
-#### TimelineItem
-
-| Property | Description | Type | Default | Version |
-| --- | --- | --- | --- | --- |
-| key | - | Key | - | - |
-| prefixCls | - | string | - | - |
-| class | - | string | - | - |
-| color | - | LiteralUnion&lt;Color&gt; | - | - |
-| dot | - | VueNode | - | - |
-| pending | Set the last ghost node's existence or its content. Use `item.loading` instead | boolean | false | - |
-| position | - | string | - | - |
-| style | - | CSSProperties | - | - |
-| label | - | VueNode | - | - |
-| children | - | VueNode | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record&lt;SemanticDOM, CSSProperties&gt; | - | - |
+| dotRender | Custom rendering function for timeline dot | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - | - |
+| labelRender | Custom rendering function for timeline label | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - | - |
+| contentRender | Custom rendering function for timeline content | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - | - |
 
 ### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| pending | Set the last ghost node's existence or its content. Use `item.loading` instead | () =&gt; void | - |
-| pendingDot | Set the dot of the last ghost node when pending is true. Use `item.icon` instead | () =&gt; void | - |
-| dotRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |
-| labelRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |
-| contentRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |
+| pending | Set the last ghost node's existence or its content | () =&gt; VueNode | - |
+| pendingDot | Set the dot of the last ghost node when pending is true | () =&gt; VueNode | - |
+| dotRender | Custom rendering function for timeline dot | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - |
+| labelRender | Custom rendering function for timeline label | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - |
+| contentRender | Custom rendering function for timeline content | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; VueNode | - |
+
+## Types
+
+### TimelineItem
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| children | Set the content | VueNode | - | - |
+| color | Set the circle's color to `blue`, `red`, `green`, `gray` or other custom colors | string | `blue` | - |
+| dot | Customize timeline dot | VueNode | - | - |
+| key | Unique key for this item | Key | - | - |
+| label | Set the label | VueNode | - | - |
+| loading | Set loading state | boolean | false | - |
+| pending | Whether this item is pending | boolean | false | - |
+| position | Customize node position | `left` \| `right` | - | - |
+
+## Semantic DOM {#semantic-dom}
+
+## Design Token {#design-token}
+
+<ComponentTokenTable component="Timeline"></ComponentTokenTable>

@@ -13,6 +13,9 @@ demo:
 
 ## When To Use {#when-to-use}
 
+- If you need to represent the switching between two states or on-off state.
+- The difference between `Switch` and `Checkbox` is that `Switch` will trigger a state change directly when you toggle it, while `Checkbox` is generally used for state marking, which should work in conjunction with submit operation.
+
 ## Examples {#examples}
 
 <demo-group>
@@ -22,45 +25,71 @@ demo:
   <demo src="./demo/size.vue">Two sizes</demo>
   <demo src="./demo/loading.vue">Loading</demo>
   <demo src="./demo/component-token.vue" debug>Custom component token</demo>
-  <demo src="./demo/style-class.vue" version="6.0.0">Custom semantic dom styling</demo>
+  <demo src="./demo/style-class.vue">Custom semantic dom styling</demo>
 </demo-group>
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props {#props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| size | The size of the Switch, options: `default` `small` | SwitchSize | `default` | - |
+| autoFocus | Auto focus when component mounted | boolean | false | - |
 | checked | Determine whether the Switch is checked | boolean | false | - |
-| defaultChecked | Whether to set the initial state | boolean | false | - |
-| value | Alias for `checked` | boolean | - | 5.12.0 |
-| defaultValue | Alias for `defaultChecked` | boolean | - | 5.12.0 |
 | checkedChildren | The content to be shown when the state is checked | VueNode | - | - |
-| unCheckedChildren | The content to be shown when the state is unchecked | VueNode | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | SwitchClassNamesType | - | - |
+| defaultChecked | Whether to set the initial state | boolean | false | - |
+| defaultValue | Alias for `defaultChecked` | boolean | - | 5.12.0 |
 | disabled | Disable switch | boolean | false | - |
 | loading | Loading state of switch | boolean | false | - |
-| autoFocus | - | boolean | - | - |
-| title | - | string | - | - |
-| tabIndex | - | number | - | - |
-| id | - | string | - | - |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | SwitchClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | SwitchStylesType | - | - |
+| size | The size of the Switch, options: `default` `small` | `default` \| `small` | `default` | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | SwitchStylesType | - | - |
+| unCheckedChildren | The content to be shown when the state is unchecked | VueNode | - | - |
+| value | Alias for `checked` | boolean | - | 5.12.0 |
 
 ### Events {#events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
-| change | Trigger when the checked state is changing | SwitchChangeEventHandler | - |
-| click | Trigger when clicked | SwitchClickEventHandler | - |
-| update:checked | - | (checked: boolean) =&gt; void | - |
-| update:value | - | (checked: boolean) =&gt; void | - |
+| change | Trigger when the checked state is changing | (checked: boolean, event: Event) =&gt; void | - |
+| click | Trigger when clicked | (checked: boolean, event: Event) =&gt; void | - |
 
 ### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| checkedChildren | The content to be shown when the state is checked | () =&gt; any | - |
-| unCheckedChildren | The content to be shown when the state is unchecked | () =&gt; any | - |
+| checkedChildren | The content to be shown when the state is checked | () =&gt; VueNode | - |
+| unCheckedChildren | The content to be shown when the state is unchecked | () =&gt; VueNode | - |
+
+### Methods {#methods}
+
+| Name | Description | Version |
+| --- | --- | --- |
+| blur() | Remove focus | - |
+| focus() | Get focus | - |
+
+## Semantic DOM {#semantic-dom}
+
+| Name | Description | Version |
+| --- | --- | --- |
+| root | Root element | - |
+| handle | Handle element | - |
+| inner | Inner element | - |
+
+## Design Token {#design-token}
+
+<ComponentTokenTable component="Switch"></ComponentTokenTable>
+
+## FAQ
+
+### Why not work in Form.Item? {#faq-binding-data}
+
+Form.Item default bind value to `value` property, but Switch value property is `checked`. You can use `v-model:checked` to change bind property.
+
+```vue
+<a-form-item name="fieldA">
+  <a-switch v-model:checked="form.fieldA" />
+</a-form-item>
+```

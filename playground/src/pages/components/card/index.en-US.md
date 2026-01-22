@@ -60,14 +60,14 @@ Common props ref：[Common props](/docs/vue/common-props)
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | CardStylesType | - | - |
 | variant | Variants of Card | 'borderless' \| 'outlined' | `outlined` | - |
 
-### Events {#card-events}
+#### Events {#card-events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
 | tabChange | Callback when tab is switched | (key: string) =&gt; void | - |
 | update:activeTabKey | - | (key: string) =&gt; void | - |
 
-### Slots {#card-slots}
+#### Slots {#card-slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |

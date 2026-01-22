@@ -33,7 +33,7 @@ demo:
 
 ## API
 
-### Property {#property}
+### Props
 
 Common props ref：[Common props](/docs/vue/common-props)
 
@@ -64,20 +64,20 @@ Common props ref：[Common props](/docs/vue/common-props)
 | openClass | Class added to child when tooltip is open | string | - | - |
 | unique | Enable unique display inside `AUniqueProvider`/ConfigProvider | boolean | - | - |
 
-### Events {#events}
+### Events
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
 | openChange | Callback when tooltip visibility changes | (open: boolean) =&gt; void | - |
 | update:open | Emit when tooltip visibility changes | (open: boolean) =&gt; void | - |
 
-### Slots {#slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
 | title | The text shown in the tooltip | () =&gt; any | - |
 
-### Methods {#methods}
+### Methods
 
 | Method | Description | Type | Version |
 | --- | --- | --- | --- |

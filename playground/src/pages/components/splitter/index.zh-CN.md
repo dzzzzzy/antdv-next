@@ -39,7 +39,7 @@ tag: 5.21.0
 
 ### Splitter
 
-#### 属性 {#splitter-property}
+#### 属性 {#splitter-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -68,9 +68,9 @@ tag: 5.21.0
 | collapsibleIconStart | 自定义折叠开始图标 | () =&gt; VueNode | - |
 | draggerIcon | 自定义拖拽图标 | () =&gt; VueNode | 6.0.0 |
 
-### Splitter.Panel
+### SplitterPanel
 
-#### 属性 {#splitter-panel-property}
+#### 属性 {#splitter-panel-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

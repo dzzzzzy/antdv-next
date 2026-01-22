@@ -41,7 +41,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 
 ### Space
 
-#### 属性 {#space-property}
+#### 属性 {#space-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -64,7 +64,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 
 `'small' | 'middle' | 'large' | number`
 
-### Space.Compact
+### SpaceCompact
 
 当子表单组件紧密连接并且边框折叠时，使用 Space.Compact。支持的组件有：
 
@@ -78,7 +78,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 - TimePicker
 - TreeSelect
 
-#### 属性 {#space-compact-property}
+#### 属性 {#spacecompact-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

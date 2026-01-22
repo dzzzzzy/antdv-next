@@ -9,9 +9,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-0kxQrbHx2kAAA
 
 <DocHeading></DocHeading>
 
-## When To Use {#when-to-use}
+## When To Use
 
-## Examples {#examples}
+Use when important operations need to inform the user to process the results and the feedback is more complicated.
+
+## Examples
 
 <demo-group>
   <demo src="./demo/success.vue">Success</demo>
@@ -27,25 +29,31 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-0kxQrbHx2kAAA
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| icon | Custom back icon | VueNode | - | - |
-| status | Result status, decide icons and colors | ResultStatusType | `info` | - |
-| title | The title | VueNode | - | - |
-| subTitle | The subTitle | VueNode | - | - |
-| extra | Operating area | VueNode | - | - |
-| classes | Customize class for each semantic structure inside the component. Supports object or function | ResultClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function | ResultStylesType | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | Record<[SemanticDOM](#semantic-dom), string> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), string> | - |  |
+| extra | Operating area | VueNode | - |  |
+| icon | Custom back icon | VueNode | - |  |
+| status | Result status, decide icons and colors | `success` \| `error` \| `info` \| `warning` \| `404` \| `403` \| `500` | `info` |  |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record<[SemanticDOM](#semantic-dom), CSSProperties> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), CSSProperties> | - |  |
+| subTitle | The subTitle | VueNode | - |  |
+| title | The title | VueNode | - |  |
 
-### Slots {#slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| icon | Custom back icon | () =&gt; any | - |
-| title | The title | () =&gt; any | - |
-| subTitle | The subTitle | () =&gt; any | - |
-| extra | Operating area | () =&gt; any | - |
+| icon | Custom back icon | - | - |
+| title | The title | - | - |
+| subTitle | The subTitle | - | - |
+| extra | Operating area | - | - |
+
+## Semantic DOM
+
+## Design Token
+
+<ComponentTokenTable component="Result"></ComponentTokenTable>

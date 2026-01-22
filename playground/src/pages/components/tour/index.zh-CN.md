@@ -31,13 +31,13 @@ demo:
 
 ## API
 
-### Tour 属性 {#tour-props}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| steps | 引导步骤配置 | TourStepItem[] | - | - |
+| steps | 引导步骤配置 | TourStepItem[\] | - | - |
 | open | 打开引导 | boolean | false | - |
 | current | 当前处于哪一步 | number | - | - |
 | arrow | 是否显示箭头，包含是否指向元素中心的配置 | boolean \| &#123; pointAtCenter: boolean &#125; | true | - |
@@ -54,10 +54,30 @@ demo:
 | getPopupContainer | 设置 Tour 浮层的渲染节点，默认是 body | (node: HTMLElement) =&gt; HTMLElement | () =&gt; document.body | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TourClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TourStylesType | - | - |
-| rootClass | 根节点 class | string | - | - |
-| prefixCls | - | string | - | - |
 
-### TourStep 属性 {#tourstep-props}
+### 事件 {#events}
+
+| 事件 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| change | 步骤改变时的回调，current 为当前的步骤 | (current: number) =&gt; void | - |
+| close | 关闭引导时的回调函数 | (current: number) =&gt; void | - |
+| finish | 引导完成时的回调 | () =&gt; void | - |
+
+### 插槽 {#slots}
+
+| 插槽 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| actionsRender | 自定义操作按钮 | (originNode: any, info: &#123; current: number, total: number &#125;) =&gt; any | - |
+| indicatorsRender | 自定义指示器 | (current: number, total: number) =&gt; any | - |
+| nextButton | 自定义下一步按钮 | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| prevButton | 自定义上一步按钮 | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| coverRender | 自定义步骤封面 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+| titleRender | 自定义步骤标题 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+| descriptionRender | 自定义步骤描述 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+
+## 类型 {#types}
+
+### TourStepItem
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -73,29 +93,6 @@ demo:
 | nextButtonProps | 下一步按钮的属性 | &#123; children?: VueNode; onClick?: () =&gt; void; class?: string; style?: CSSProperties &#125; | - | - |
 | prevButtonProps | 上一步按钮的属性 | &#123; children?: VueNode; onClick?: () =&gt; void; class?: string; style?: CSSProperties &#125; | - | - |
 | scrollIntoViewOptions | 是否支持当前元素滚动到视窗内，也可传入配置指定滚动视窗的相关参数，默认跟随 Tour 的 `scrollIntoViewOptions` 属性 | boolean \| ScrollIntoViewOptions | true | - |
-
-### 事件 {#events}
-
-| 事件 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| change | 步骤改变时的回调，current 为当前的步骤 | (current: number) =&gt; void | - |
-| close | 关闭引导时的回调函数 | (current: number) =&gt; void | - |
-| finish | 引导完成时的回调 | () =&gt; void | - |
-| update:open | open 变化时触发 | (open: boolean) =&gt; void | - |
-| update:current | current 变化时触发 | (current: number) =&gt; void | - |
-| popupAlign | - | VcTourProps['onPopupAlign'] | - |
-
-### 插槽 {#slots}
-
-| 插槽 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| actionsRender | 自定义操作按钮 | (originNode: any, info: &#123; current: number, total: number &#125;) =&gt; any | - |
-| indicatorsRender | 自定义指示器 | (current: number, total: number) =&gt; any | - |
-| nextButton | 自定义下一步按钮 | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
-| prevButton | 自定义上一步按钮 | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
-| coverRender | 自定义步骤封面 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
-| titleRender | 自定义步骤标题 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
-| descriptionRender | 自定义步骤描述 | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
 
 ## Semantic DOM {#semantic-dom}
 

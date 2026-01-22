@@ -13,66 +13,82 @@ demo:
 
 ## When To Use {#when-to-use}
 
+- When want to highlight some data.
+- When want to display statistic data with description.
+
 ## Examples {#examples}
 
 <demo-group>
+  <demo src="./demo/basic.vue">Basic</demo>
+  <demo src="./demo/unit.vue">Unit</demo>
+  <demo src="./demo/card.vue">In Card</demo>
+  <demo src="./demo/countdown.vue">Countdown</demo>
+  <demo src="./demo/style-class.vue">Custom semantic dom styling</demo>
 </demo-group>
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
 
-#### Statistic
+### Statistic
+
+#### Props {#statistic-props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| formatter | Customize value display logic | Formatter | - | - |
+| classes | Customize class for each semantic structure inside the Statistic component. Supports object or function | StatisticClassNamesType | - | - |
 | decimalSeparator | The decimal separator | string | `.` | - |
+| formatter | Customize value display logic | (value: number \| string) =&gt; VueNode | - | - |
 | groupSeparator | Group separator | string | `,` | - |
-| precision | The precision of input value | number | - | - |
-| value | Display value | valueType | - | - |
-| valueStyle | Set value section style | CSSProperties | - | - |
-| valueRender | - | (node: any) =&gt; VNodeChild | - | - |
-| title | Display title | VueNode | - | - |
-| prefix | The prefix node of value | VueNode | - | - |
-| suffix | The suffix node of value | VueNode | - | - |
 | loading | Loading status of Statistic | boolean | false | 4.8.0 |
-| classes | Customize class for each semantic structure inside the Statistic component. Supports object or function. | StatisticClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the Statistic component. Supports object or function. | StatisticStylesType | - | - |
-
-#### StatisticTimer
-
-| Property | Description | Type | Default | Version |
-| --- | --- | --- | --- | --- |
-| formatter | Customize value display logic | Formatter | - | - |
-| decimalSeparator | The decimal separator | string | `.` | - |
-| groupSeparator | Group separator | string | `,` | - |
 | precision | The precision of input value | number | - | - |
-| value | Display value | valueType | - | - |
-| valueStyle | Set value section style | CSSProperties | - | - |
-| valueRender | - | (node: any) =&gt; VNodeChild | - | - |
-| title | Display title | VueNode | - | - |
 | prefix | The prefix node of value | VueNode | - | - |
+| styles | Customize inline style for each semantic structure inside the Statistic component. Supports object or function | StatisticStylesType | - | - |
 | suffix | The suffix node of value | VueNode | - | - |
-| loading | Loading status of Statistic | boolean | false | 4.8.0 |
-| classes | Customize class for each semantic structure inside the Statistic component. Supports object or function. | StatisticClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the Statistic component. Supports object or function. | StatisticStylesType | - | - |
-| type | - | TimerType | - | - |
-| format | - | string | - | - |
+| title | Display title | VueNode | - | - |
+| value | Display value | string \| number | - | - |
+| valueStyle | Set value section style | CSSProperties | - | - |
 
-### Events {#events}
-
-| Event | Description | Type | Version |
-| --- | --- | --- | --- |
-| mouseenter | - | (e: MouseEvent) =&gt; void | - |
-| mouseleave | - | (e: MouseEvent) =&gt; void | - |
-
-### Slots {#slots}
+#### Slots {#statistic-slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| title | Display title | () =&gt; any | - |
-| prefix | The prefix node of value | () =&gt; any | - |
-| suffix | The suffix node of value | () =&gt; any | - |
+| formatter | Customize value display logic | (value: number \| string) =&gt; VueNode | - |
+| prefix | The prefix node of value | () =&gt; VueNode | - |
+| suffix | The suffix node of value | () =&gt; VueNode | - |
+| title | Display title | () =&gt; VueNode | - |
+
+### Statistic.Timer
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | StatisticClassNamesType | - | - |
+| format | Format as [dayjs](https://day.js.org/) | string | `HH:mm:ss` | - |
+| prefix | The prefix node of value | VueNode | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | StatisticStylesType | - | - |
+| suffix | The suffix node of value | VueNode | - | - |
+| title | Display title | VueNode | - | - |
+| type | Timer type, countdown or countup | `countdown` \| `countup` | - | - |
+| value | Set target time | number | - | - |
+| valueStyle | Set value section style | CSSProperties | - | - |
+
+#### Events {#timer-events}
+
+| Event | Description | Type | Version |
+| --- | --- | --- | --- |
+| change | Trigger when time's changing | (value: number) =&gt; void | - |
+| finish | Trigger when time's up, only to be called when type is `countdown` | () =&gt; void | - |
+
+#### Slots {#timer-slots}
+
+| Slot | Description | Type | Version |
+| --- | --- | --- | --- |
+| prefix | The prefix node of value | () =&gt; VueNode | - |
+| suffix | The suffix node of value | () =&gt; VueNode | - |
+| title | Display title | () =&gt; VueNode | - |
+
+## Semantic DOM {#semantic-dom}
+
+## Design Token {#design-token}
+
+<ComponentTokenTable component="Statistic"></ComponentTokenTable>

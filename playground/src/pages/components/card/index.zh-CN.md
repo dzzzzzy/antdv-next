@@ -61,14 +61,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5WDvQp_H7LUAAA
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | CardStylesType | - | - |
 | variant | 形态变体 | 'borderless' \| 'outlined' | `outlined` | - |
 
-### 事件 {#card-events}
+#### 事件 {#card-events}
 
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | tabChange | 页签切换的回调 | (key: string) =&gt; void | - |
 | update:activeTabKey | - | (key: string) =&gt; void | - |
 
-### 插槽 {#card-slots}
+#### 插槽 {#card-slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
@@ -82,7 +82,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5WDvQp_H7LUAAA
 
 ### CardGrid
 
-#### Props {#card-grid-props}
+#### 属性 {#card-grid-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -91,7 +91,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5WDvQp_H7LUAAA
 
 ### CardMeta
 
-#### Props {#card-meta-props}
+#### 属性 {#card-meta-props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -102,7 +102,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5WDvQp_H7LUAAA
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | CardMetaClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | CardMetaStylesType | - | - |
 
-#### Slots {#card-meta-slots}
+#### 插槽 {#card-meta-slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |

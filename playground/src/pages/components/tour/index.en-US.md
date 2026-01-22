@@ -30,13 +30,13 @@ Use when you want to guide users through a product.
 
 ## API
 
-### Tour props {#tour-props}
+Common props ref：[Comon props](/docs/vue/common-props)
 
-Common props ref：[Common props](/docs/vue/common-props)
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| steps | Tour steps | TourStepItem[] | - | - |
+| steps | Tour steps | TourStepItem[\] | - | - |
 | open | Open tour | boolean | false | - |
 | current | What is the current step | number | - | - |
 | arrow | Whether to show the arrow, including the configuration whether to point to the center of the element | boolean \| &#123; pointAtCenter: boolean &#125; | true | - |
@@ -56,7 +56,28 @@ Common props ref：[Common props](/docs/vue/common-props)
 | rootClass | Root container class | string | - | - |
 | prefixCls | - | string | - | - |
 
-### TourStep props {#tourstep-props}
+### Events
+| Event | Description | Type | Version |
+| --- | --- | --- | --- |
+| change | Callback when the step changes. Current is the previous step | (current: number) =&gt; void | - |
+| close | Callback function on shutdown | (current: number) =&gt; void | - |
+| finish | Callback when tour is finished | () =&gt; void | - |
+
+### Slots
+
+| Slot | Description | Type | Version |
+| --- | --- | --- | --- |
+| actionsRender | Custom action | (originNode: any, info: &#123; current: number, total: number &#125;) =&gt; any | - |
+| indicatorsRender | Custom indicator | (current: number, total: number) =&gt; any | - |
+| nextButton | Customize next button | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| prevButton | Customize previous button | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| coverRender | Customize step cover | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+| titleRender | Customize step title | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+| descriptionRender | Customize step description | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
+
+## Types
+
+### TourStepItem
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -72,29 +93,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | nextButtonProps | Properties of the Next button | &#123; children?: VueNode; onClick?: () =&gt; void; class?: string; style?: CSSProperties &#125; | - | - |
 | prevButtonProps | Properties of the previous button | &#123; children?: VueNode; onClick?: () =&gt; void; class?: string; style?: CSSProperties &#125; | - | - |
 | scrollIntoViewOptions | support pass custom scrollIntoView options, the default follows the `scrollIntoViewOptions` property of Tour | boolean \| ScrollIntoViewOptions | true | - |
-
-### Events {#events}
-
-| Event | Description | Type | Version |
-| --- | --- | --- | --- |
-| change | Callback when the step changes. Current is the previous step | (current: number) =&gt; void | - |
-| close | Callback function on shutdown | (current: number) =&gt; void | - |
-| finish | Callback when tour is finished | () =&gt; void | - |
-| update:open | Emit when `open` changes | (open: boolean) =&gt; void | - |
-| update:current | Emit when `current` changes | (current: number) =&gt; void | - |
-| popupAlign | - | VcTourProps['onPopupAlign'] | - |
-
-### Slots {#slots}
-
-| Slot | Description | Type | Version |
-| --- | --- | --- | --- |
-| actionsRender | Custom action | (originNode: any, info: &#123; current: number, total: number &#125;) =&gt; any | - |
-| indicatorsRender | Custom indicator | (current: number, total: number) =&gt; any | - |
-| nextButton | Customize next button | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
-| prevButton | Customize previous button | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
-| coverRender | Customize step cover | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
-| titleRender | Customize step title | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
-| descriptionRender | Customize step description | (params: &#123; step: TourStepItem, index: number &#125;) =&gt; any | - |
 
 ## Semantic DOM {#semantic-dom}
 

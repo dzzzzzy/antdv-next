@@ -73,7 +73,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 
 ### CollapsePanel {#collapsepanel}
 
-#### Props {#collapsepanel-props}
+#### 属性 {#collapsepanel-props}
 
 :::warning 已废弃
 请使用 items 方式配置面板。
@@ -86,7 +86,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 | key | 对应 activeKey | string \| number | - |  |
 | showArrow | 是否展示当前面板上的箭头（为 false 时，collapsible 不能设为 icon） | boolean | true |  |
 
-#### Slots {#collapsepanel-slots}
+#### 插槽 {#collapsepanel-slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |

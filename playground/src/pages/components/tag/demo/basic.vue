@@ -46,9 +46,14 @@ function handleClick() {
       </template>
       Tag 2
     </a-tag>
-    <a-tag v-if="tag3" :closable="{
-      'aria-label': 'Close Button',
-    }" @close="handleCloseTag3">
+
+    <a-tag
+      v-if="tag3"
+      :closable="{
+        'aria-label': 'Close Button',
+      }"
+      @close="handleCloseTag3"
+    >
       <template #closeIcon>
         <DeleteOutlined />
       </template>

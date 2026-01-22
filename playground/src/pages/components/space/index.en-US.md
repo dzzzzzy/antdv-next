@@ -40,7 +40,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 ### Space
 
-#### Property {#space-property}
+#### Props {#space-props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -63,7 +63,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 `'small' | 'middle' | 'large' | number`
 
-### Space.Compact
+### SpaceCompact
 
 Use Space.Compact when child form components are compactly connected and the border is collapsed. The supported components are:
 
@@ -77,7 +77,7 @@ Use Space.Compact when child form components are compactly connected and the bor
 - TimePicker
 - TreeSelect
 
-#### Property {#space-compact-property}
+#### Props {#space-compact-props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

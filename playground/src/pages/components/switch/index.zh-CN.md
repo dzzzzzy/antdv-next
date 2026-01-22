@@ -14,6 +14,9 @@ demo:
 
 ## 何时使用 {#when-to-use}
 
+- 需要表示开关状态/两种状态之间的切换时；
+- 和 `checkbox` 的区别是，切换 `switch` 会直接触发状态改变，而 `checkbox` 一般用于状态标记，需要和提交操作配合。
+
 ## 示例 {#examples}
 
 <demo-group>
@@ -23,45 +26,71 @@ demo:
   <demo src="./demo/size.vue">两种大小</demo>
   <demo src="./demo/loading.vue">加载中</demo>
   <demo src="./demo/component-token.vue" debug>自定义组件 Token</demo>
-  <demo src="./demo/style-class.vue" version="6.0.0">自定义语义结构的样式和类</demo>
+  <demo src="./demo/style-class.vue">自定义语义结构的样式和类</demo>
 </demo-group>
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| size | 开关大小，可选值：`default` `small` | SwitchSize | `default` | - |
+| autoFocus | 组件挂载时自动获取焦点 | boolean | false | - |
 | checked | 指定当前是否选中 | boolean | false | - |
-| defaultChecked | 初始是否选中 | boolean | false | - |
-| value | `checked` 的别名 | boolean | - | 5.12.0 |
-| defaultValue | `defaultChecked` 的别名 | boolean | - | 5.12.0 |
 | checkedChildren | 选中时的内容 | VueNode | - | - |
-| unCheckedChildren | 非选中时的内容 | VueNode | - | - |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | SwitchClassNamesType | - | - |
+| defaultChecked | 初始是否选中 | boolean | false | - |
+| defaultValue | `defaultChecked` 的别名 | boolean | - | 5.12.0 |
 | disabled | 是否禁用 | boolean | false | - |
 | loading | 加载中的开关 | boolean | false | - |
-| autoFocus | - | boolean | - | - |
-| title | - | string | - | - |
-| tabIndex | - | number | - | - |
-| id | - | string | - | - |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | SwitchClassNamesType | - | - |
+| size | 开关大小，可选值：`default` `small` | `default` \| `small` | `default` | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | SwitchStylesType | - | - |
+| unCheckedChildren | 非选中时的内容 | VueNode | - | - |
+| value | `checked` 的别名 | boolean | - | 5.12.0 |
 
 ### 事件 {#events}
 
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| change | 变化时的回调函数 | SwitchChangeEventHandler | - |
-| click | 点击时的回调函数 | SwitchClickEventHandler | - |
-| update:checked | - | (checked: boolean) =&gt; void | - |
-| update:value | - | (checked: boolean) =&gt; void | - |
+| change | 变化时的回调函数 | (checked: boolean, event: Event) =&gt; void | - |
+| click | 点击时的回调函数 | (checked: boolean, event: Event) =&gt; void | - |
 
 ### 插槽 {#slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| checkedChildren | 选中时的内容 | () =&gt; any | - |
-| unCheckedChildren | 非选中时的内容 | () =&gt; any | - |
+| checkedChildren | 选中时的内容 | () =&gt; VueNode | - |
+| unCheckedChildren | 非选中时的内容 | () =&gt; VueNode | - |
+
+### 方法 {#methods}
+
+| 名称 | 说明 | 版本 |
+| --- | --- | --- |
+| blur() | 移除焦点 | - |
+| focus() | 获取焦点 | - |
+
+## 语义化 DOM {#semantic-dom}
+
+| 名称 | 说明 | 版本 |
+| --- | --- | --- |
+| root | 根元素 | - |
+| handle | 滑块元素 | - |
+| inner | 内部元素 | - |
+
+## 主题变量（Design Token）{#design-token}
+
+<ComponentTokenTable component="Switch"></ComponentTokenTable>
+
+## FAQ
+
+### 为什么在 Form.Item 下不能绑定数据？ {#faq-binding-data}
+
+Form.Item 默认绑定值属性到 `value` 上，而 Switch 的值属性为 `checked`。你可以通过 `v-model:checked` 来修改绑定的值属性。
+
+```vue
+<a-form-item name="fieldA">
+  <a-switch v-model:checked="form.fieldA" />
+</a-form-item>
+```

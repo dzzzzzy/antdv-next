@@ -38,7 +38,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 ### Splitter
 
-#### Property {#splitter-property}
+#### Props {#splitter-props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -67,9 +67,9 @@ Common props ref：[Common props](/docs/vue/common-props)
 | collapsibleIconStart | Custom collapsible start icon | () =&gt; VueNode | - |
 | draggerIcon | Custom dragger icon | () =&gt; VueNode | 6.0.0 |
 
-### Splitter.Panel
+### SplitterPanel
 
-#### Property {#splitter-panel-property}
+#### Props {#splitter-panel-props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

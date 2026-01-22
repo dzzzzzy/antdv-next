@@ -1,23 +1,23 @@
 {
   "name": "@antdv-next/cssinjs",
   "type": "module",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-beta.2",
   "description": "cssinjs solution for ant-design-vue",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     },
     "./cssinjs-utils": {
-      "types": "./dist/cssinjs-utils/index.d.ts",
-      "import": "./dist/cssinjs-utils/index.js",
-      "default": "./dist/cssinjs-utils/index.js"
+      "types": "./dist/cssinjs-utils/index.d.mts",
+      "import": "./dist/cssinjs-utils/index.mjs",
+      "default": "./dist/cssinjs-utils/index.mjs"
     },
     "./dist/*": {
-      "types": "./dist/*.d.ts",
-      "import": "./dist/*.js",
-      "default": "./dist/*.js"
+      "types": "./dist/*.d.mts",
+      "import": "./dist/*.mjs",
+      "default": "./dist/*.mjs"
     }
   },
   "files": [
@@ -38,19 +38,19 @@
     "vue": ">=3.2.0"
   },
   "dependencies": {
-    "@emotion/hash": "catalog:",
-    "@emotion/unitless": "catalog:",
-    "@v-c/util": "catalog:",
-    "csstype": "catalog:",
-    "defu": "catalog:",
-    "stylis": "catalog:"
+    "@emotion/hash": "catalog:prod",
+    "@emotion/unitless": "catalog:prod",
+    "@v-c/util": "catalog:vc",
+    "csstype": "catalog:prod",
+    "defu": "catalog:prod",
+    "stylis": "catalog:prod"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "catalog:",
-    "@types/node": "catalog:",
-    "@types/stylis": "catalog:",
-    "@types/testing-library__jest-dom": "catalog:",
-    "@vue/test-utils": "catalog:",
-    "vue": "catalog:"
+    "@testing-library/jest-dom": "catalog:dev",
+    "@types/node": "catalog:types",
+    "@types/stylis": "catalog:types",
+    "@types/testing-library__jest-dom": "catalog:types",
+    "@vue/test-utils": "catalog:dev",
+    "vue": "catalog:prod"
   }
 }

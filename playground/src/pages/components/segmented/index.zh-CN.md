@@ -35,34 +35,53 @@ demo:
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
 
-| 属性 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| options | 数据化配置选项内容 | SegmentedOptions | [] | - |
-| rootClass | - | string | - | - |
-| block | 将宽度调整为父元素宽度的选项 | boolean | false | - |
-| size | 控件尺寸 | SizeType | `middle` | - |
-| vertical | 排列方向，与 `orientation` 同时存在，以 `orientation` 优先 | boolean | `false` | 5.21.0 |
-| orientation | 排列方向 | Orientation | `horizontal` | - |
-| classes | 用于自定义 Segmented 组件内部各语义化结构的 class，支持对象或函数 | SegmentedClassNamesType | - | - |
-| styles | 用于自定义 Segmented 组件内部各语义化结构的行内 style，支持对象或函数 | SegmentedStylesType | - | - |
-| shape | 形状 | 'default' \| 'round' | `default` | 5.24.0 |
-| iconRender | - | (option: SegmentedLabeledOption) =&gt; any | - | - |
-| labelRender | - | (option: SegmentedLabeledOption) =&gt; any | - | - |
+### Props
 
-### 事件 {#events}
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| block | 将宽度调整为父元素宽度的选项 | boolean | false | - |
+| classes | 用于自定义 Segmented 组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| defaultValue | 默认选中的值 | string \| number | - | - |
+| disabled | 是否禁用 | boolean | false | - |
+| options | 数据化配置选项内容 | string\[] \| number\[] \| SegmentedItemType\[] | [] | - |
+| orientation | 排列方向 | `horizontal` \| `vertical` | `horizontal` | - |
+| size | 控件尺寸 | `large` \| `middle` \| `small` | `middle` | - |
+| styles | 用于自定义 Segmented 组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| vertical | 排列方向，与 `orientation` 同时存在，以 `orientation` 优先 | boolean | `false` | - |
+| value | 当前选中的值 | string \| number | - | - |
+| shape | 形状 | `default` \| `round` | `default` | - |
+| name | Segmented 下所有 `input[type="radio"]` 的 `name` 属性。若未设置，则将回退到随机生成的名称 | string | - | - |
+
+### Events
 
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| change | 选项变化时的回调函数 | (value: RcSegmentedValue) =&gt; void | - |
-| update:value | - | (value: RcSegmentedValue) =&gt; void | - |
+| change | 选项变化时的回调函数 | function(value: string \| number) | - |
 
-### 插槽 {#slots}
+### Slots
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| iconRender | - | (option: SegmentedLabeledOption) =&gt; any | - |
-| labelRender | - | (option: SegmentedLabeledOption) =&gt; any | - |
+| iconRender | icon 渲染插槽 | (option: SegmentedLabeledOption) =&gt; any | - |
+| labelRender | label 渲染插槽 | (option: SegmentedLabeledOption) =&gt; any | - |
+
+## Types
+
+### SegmentedItemType
+
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| disabled | 分段项的禁用状态 | boolean | false | - |
+| class | 自定义类名 | string | - | - |
+| icon | 分段项的显示图标 | VueNode | - | - |
+| label | 分段项的显示文本 | VueNode | - | - |
+| tooltip | 分段项的工具提示 | string \| [TooltipProps](../tooltip#api) | - | - |
+| value | 分段项的值 | string \| number | - | - |
+
+## Semantic DOM
+
+## 主题变量（Design Token）{#design-token}
+
+<ComponentTokenTable component="Segmented"></ComponentTokenTable>
