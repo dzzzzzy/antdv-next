@@ -5,6 +5,8 @@ import { useRouter } from 'vue-router'
 import { useDocPage } from '@/composables/doc-page'
 import { useMobile } from '@/composables/mobile'
 import { useAppStore } from '@/stores/app'
+import Contributors from './components/contributors.vue'
+import Footer from './components/footer.vue'
 
 const { isMobile } = useMobile()
 const appStore = useAppStore()
@@ -56,9 +58,16 @@ const handleChangeMenu: MenuEmits['click'] = (info) => {
       <section class="ant-doc-main-section">
         <a-anchor :items="anchorItems" class="ant-doc-main-sider-anchor" :offset-top="70" :affix="false" />
       </section>
-      <article class="pb-32px mt--16px" :class="[direction === 'ltr' ? 'pl-48px pr-164px' : 'pr-48px pl-164px']">
+      <article class="mt--16px" :class="[direction === 'ltr' ? 'pl-48px pr-164px' : 'pr-48px pl-164px']">
         <slot />
+        <Suspense>
+          <Contributors />
+          <template #fallback>
+            loading
+          </template>
+        </Suspense>
       </article>
+      <Footer />
     </a-col>
   </main>
 </template>
