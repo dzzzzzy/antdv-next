@@ -104,7 +104,7 @@ const ProviderChildren = defineComponent<
   string,
   SlotsType<ConfigProviderSlots>
 >(
-  (props = providerDefaultProps, { attrs, slots }) => {
+  (props = providerDefaultProps, { slots }) => {
     const theme = computed(() => props.theme)
     const parentTheme = computed(() => props.parentContext?.theme)
     // =================================== Context ===================================
@@ -148,7 +148,7 @@ const ProviderChildren = defineComponent<
       // Pass the props used by `useContext` directly with child component.
       // These props should merged into `config`.
       PASSED_PROPS.forEach((propName) => {
-        const propValue = (props as any)[propName] ?? (attrs as any)[propName]
+        const propValue = (props as any)[propName]
         if (propValue) {
           (config as any)[propName] = propValue
         }
