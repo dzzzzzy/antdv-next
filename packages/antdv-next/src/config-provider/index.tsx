@@ -1,4 +1,4 @@
-import type { App, SlotsType, VNodeChild } from 'vue'
+import type { App, AppContext, SlotsType, VNodeChild } from 'vue'
 import type { Locale } from '../locale'
 import type { ConfigConsumerProps, Theme, ThemeConfig } from './context'
 import type { ConfigProviderEmits, ConfigProviderProps, ConfigProviderSlots } from './define'
@@ -63,6 +63,7 @@ export interface GlobalConfigProps {
   iconPrefixCls?: string
   theme?: Theme | ThemeConfig
   holderRender?: holderRenderType
+  appContext?: AppContext
 }
 
 const globalConfigData = shallowReactive<GlobalConfigProps>({})
@@ -76,7 +77,7 @@ function getGlobalIconPrefixCls() {
 }
 
 function setGlobalConfig(props: GlobalConfigProps) {
-  const { prefixCls, iconPrefixCls, theme, holderRender } = props
+  const { prefixCls, iconPrefixCls, theme, holderRender, appContext } = props
   if (prefixCls !== undefined) {
     globalPrefixCls = prefixCls
     globalConfigData.prefixCls = prefixCls
@@ -84,6 +85,9 @@ function setGlobalConfig(props: GlobalConfigProps) {
   if (iconPrefixCls !== undefined) {
     globalIconPrefixCls = iconPrefixCls
     globalConfigData.iconPrefixCls = iconPrefixCls
+  }
+  if (appContext) {
+    globalConfigData.appContext = appContext
   }
   if ('holderRender' in props) {
     globalHolderRender = holderRender
@@ -284,7 +288,9 @@ const ConfigProvider = defineComponent<
   app.component(ConfigProvider.name, ConfigProvider)
 }
 
-export default ConfigProvider
+export default ConfigProvider as typeof ConfigProvider & {
+  config: (props: GlobalConfigProps) => void
+}
 
 export function globalConfig() {
   return {
@@ -307,5 +313,8 @@ export function globalConfig() {
     getTheme: () => globalTheme,
     theme: computed(() => globalConfigData.theme || globalTheme),
     holderRender: globalHolderRender,
+    get appContext() {
+      return globalConfigData.appContext
+    },
   }
 }

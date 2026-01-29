@@ -49,6 +49,7 @@
     "fs-extra": "catalog:dev",
     "jiti": "catalog:dev",
     "jsdom": "catalog:dev",
+    "lint-staged": "catalog:dev",
     "markdown-it": "catalog:docs",
     "mockdate": "catalog:dev",
     "npm-run-all": "catalog:dev",
@@ -68,7 +69,7 @@
     "vue-tsc": "catalog:dev"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
+    "pre-commit": "lint-staged",
     "commit-msg": "node scripts/verify-commit.js"
   },
   "lint-staged": {
