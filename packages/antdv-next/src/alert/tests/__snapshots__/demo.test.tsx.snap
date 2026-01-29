@@ -18,7 +18,9 @@ exports[`alert demo > renders action correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="check-circle"
           class="anticon anticon-check-circle"
@@ -113,7 +115,9 @@ exports[`alert demo > renders action correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="close-circle"
           class="anticon anticon-close-circle"
@@ -388,7 +392,9 @@ exports[`alert demo > renders banner correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="exclamation-circle"
           class="anticon anticon-exclamation-circle"
@@ -438,7 +444,9 @@ exports[`alert demo > renders banner correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="exclamation-circle"
           class="anticon anticon-exclamation-circle"
@@ -543,7 +551,9 @@ exports[`alert demo > renders banner correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="close-circle"
           class="anticon anticon-close-circle"
@@ -758,7 +768,9 @@ exports[`alert demo > renders component-token correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -848,7 +860,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -898,7 +912,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -948,7 +964,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -998,7 +1016,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -1048,7 +1068,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -1102,7 +1124,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -1156,7 +1180,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -1210,7 +1236,9 @@ exports[`alert demo > renders custom-icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="smile"
           class="anticon anticon-smile"
@@ -1412,7 +1440,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="check-circle"
           class="anticon anticon-check-circle"
@@ -1462,7 +1492,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="info-circle"
           class="anticon anticon-info-circle"
@@ -1512,7 +1544,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="exclamation-circle"
           class="anticon anticon-exclamation-circle"
@@ -1587,7 +1621,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="close-circle"
           class="anticon anticon-close-circle"
@@ -1638,7 +1674,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="check-circle"
           class="anticon anticon-check-circle"
@@ -1692,7 +1730,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="info-circle"
           class="anticon anticon-info-circle"
@@ -1746,7 +1786,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="exclamation-circle"
           class="anticon anticon-exclamation-circle"
@@ -1825,7 +1867,9 @@ exports[`alert demo > renders icon correctly 1`] = `
       data-show="true"
       role="alert"
     >
-      <span>
+      <span
+        class="ant-alert-icon"
+      >
         <span
           aria-label="close-circle"
           class="anticon anticon-close-circle"
@@ -1884,7 +1928,9 @@ exports[`alert demo > renders loop-banner correctly 1`] = `
     data-show="true"
     role="alert"
   >
-    <span>
+    <span
+      class="ant-alert-icon"
+    >
       <span
         aria-label="exclamation-circle"
         class="anticon anticon-exclamation-circle"
@@ -2168,6 +2214,7 @@ exports[`alert demo > renders style-class correctly 1`] = `
       role="alert"
     >
       <span
+        class="ant-alert-icon"
         style="font-size: 18px;"
       >
         <span
@@ -2241,6 +2288,7 @@ exports[`alert demo > renders style-class correctly 1`] = `
       style="background-color: rgba(82, 196, 26, 0.1); border-color: rgb(183, 235, 143);"
     >
       <span
+        class="ant-alert-icon"
         style="color: rgb(82, 196, 26);"
       >
         <span

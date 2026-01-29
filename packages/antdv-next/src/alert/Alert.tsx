@@ -288,6 +288,7 @@ const Alert = defineComponent<
         return {}
       }
       const mergedAriaProps = mergedAriaPropsFn()
+
       return (
         <Transition
           name={`${prefixCls.value}-motion`}
@@ -316,7 +317,7 @@ const Alert = defineComponent<
                   {isShowIcon
                     ? (
                         <IconNode
-                          class={mergedClassNames.icon}
+                          class={clsx(`${prefixCls.value}-icon`, mergedClassNames.icon)}
                           style={mergedStyles.icon}
                           description={description}
                           icon={props.icon}

@@ -4,6 +4,7 @@ import Alert from '..'
 import rtlTest from '../../../../../tests/shared/rtlTest'
 import { mount } from '../../../../../tests/utils'
 import Button from '../../button'
+import ConfigProvider from '../../config-provider'
 import Popconfirm from '../../popconfirm'
 import Tooltip from '../../tooltip'
 
@@ -190,5 +191,15 @@ describe('alert', () => {
     expect(wrapper.html()).toContain('custom-root')
     expect(wrapper.html()).toContain('custom-icon')
     expect(wrapper.find('.ant-alert').classes()).toContain('custom-root')
+  })
+
+  it('should support custom success icon', () => {
+    const wrapper = mount(
+      <ConfigProvider alert={{ successIcon: 'foobar' }}>
+        <Alert title="Success Tips" type="success" showIcon />
+      </ConfigProvider>,
+    )
+
+    expect(wrapper.find('.ant-alert').text()).toContain('foobar')
   })
 })
