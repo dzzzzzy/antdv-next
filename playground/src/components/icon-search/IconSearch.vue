@@ -85,13 +85,17 @@ function mergeCategory(
 ) {
   const merged: Record<string, MatchedCategory> = { ...categoryA }
   Object.keys(categoryB).forEach((key) => {
+    const categoryBItem = categoryB[key]
+    if (!categoryBItem)
+      return
+
     if (merged[key]) {
       merged[key].icons = Array.from(
-        new Set([...merged[key].icons, ...categoryB[key].icons]),
+        new Set([...merged[key].icons, ...categoryBItem.icons]),
       )
     }
     else {
-      merged[key] = categoryB[key]
+      merged[key] = categoryBItem
     }
   })
   return merged
@@ -133,8 +137,8 @@ const matchedCategories = computed(() => {
   return result
 })
 
-function onChangeTheme(val: ThemeType) {
-  theme.value = val
+function onChangeTheme(val: string | number) {
+  theme.value = val as ThemeType
 }
 </script>
 

@@ -73,14 +73,14 @@ watch(
     rectList.value = Array.from({
       length: Math.max(rectList.value.length, targetRectList.length),
     }).map<RectType>((_, index) => {
-      const prevRect = rectList.value[index] || {}
-      const nextRect = targetRectList[index] || {}
+      const prevRect = rectList.value[index]
+      const nextRect = targetRectList[index]
       return {
-        left: nextRect.left ?? prevRect.left ?? 0,
-        top: nextRect.top ?? prevRect.top ?? 0,
-        width: nextRect.width ?? prevRect.width ?? 0,
-        height: nextRect.height ?? prevRect.height ?? 0,
-        visible: !!nextRect.visible,
+        left: nextRect?.left ?? prevRect?.left ?? 0,
+        top: nextRect?.top ?? prevRect?.top ?? 0,
+        width: nextRect?.width ?? prevRect?.width ?? 0,
+        height: nextRect?.height ?? prevRect?.height ?? 0,
+        visible: !!nextRect?.visible,
       }
     })
   },

@@ -74,7 +74,7 @@ export function getClosetColor(colorPrimary?: string | null): string | null {
 
   const firstMatch = distance.sort((a, b) => a.dist - b.dist)[0]
 
-  return firstMatch.dist <= DISTANCE ? firstMatch.color : null
+  return firstMatch && firstMatch.dist <= DISTANCE ? firstMatch.color : null
 }
 
 export function getAvatarURL(color?: string | null): string | null {

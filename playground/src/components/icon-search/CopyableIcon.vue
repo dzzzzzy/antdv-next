@@ -21,7 +21,7 @@ const { t } = useLocale()
 
 const iconName = computed(() => `${props.name}`)
 
-const iconComponent = computed(() => AntdIcons[iconName.value])
+const iconComponent = computed(() => AntdIcons[iconName.value as keyof typeof AntdIcons])
 
 const copyText = computed(() => `<${iconName.value} />`)
 
